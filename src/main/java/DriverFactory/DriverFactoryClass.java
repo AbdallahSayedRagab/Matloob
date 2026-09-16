@@ -18,13 +18,15 @@ public class DriverFactoryClass {
             case "chrome":
                 ChromeOptions Options = new ChromeOptions();
                 Options.addArguments("--start-maximized");
-                Options.addArguments("--force-device-scale-factor=0.75");
+                Options.addArguments("--force-device-scale-factor=1.25");
+                Options.addArguments("--incognito");
                 driverThreadLocal.set(new ChromeDriver(Options));
                 break;
 
             case "edge":
                 EdgeOptions Optionss = new EdgeOptions();
                 Optionss.addArguments("--start-maximized");
+                Optionss.addArguments("--inprivate");
                 driverThreadLocal.set(new EdgeDriver(Optionss));
                 break;
 
