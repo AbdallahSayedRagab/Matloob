@@ -10,8 +10,8 @@ public class P02_Dashboard {
     }
     private WebDriver driver;
 
-    private final By EventsPageButton = By.xpath("");
-    private final By OpportunitiesPageButton = By.xpath("");
+    private final By EventsPageButton = By.xpath("//span[text()='الفعاليات']");
+    private final By OpportunitiesPageButton = By.xpath("//span[text()='الفرص']");
 
 
 

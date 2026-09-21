@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,6 +25,11 @@ public class Utility {
 //        driver.findElement(Locator).click();
 //
 //    }
+
+    private static final By Loader = By.cssSelector("div.h-screen > svg, div.brand-splash");
+
+
+
         @Step("Clicking On :{Locator}")
     public static void CLICKONELEMENTS(WebDriver driver, By Locator ) throws InterruptedException {
             Scrolling.ScrollToElement(driver,Locator);
@@ -46,6 +52,58 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
     LogsUtiles.info("Clicked on " + Locator.toString());
 }
+
+    public static void WatingLoader_And_CLICKONELEMENTS(WebDriver driver, By Locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(Locator));
+
+        // scroll لنص الشاشة عشان أي sticky header/footer ميغطيش العنصر
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
+
+        waitUntilStable(driver, Locator);
+
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(20))
+                    .ignoring(ElementClickInterceptedException.class, StaleElementReferenceException.class)
+                    .until(d -> {
+                        d.findElement(Locator).click();
+                        return true;
+                    });
+        } catch (TimeoutException e) {
+            LogsUtiles.info("Normal click failed, using JS click on " + Locator);
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].click();", driver.findElement(Locator));
+        }
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        LogsUtiles.info("Clicked on " + Locator);
+    }
+
+    // يستنى العنصر يبطل حركة (نفس المكان مرتين ورا بعض)
+    private static void waitUntilStable(WebDriver driver, By locator) {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .pollingEvery(Duration.ofMillis(200))
+                    .ignoring(StaleElementReferenceException.class)
+                    .until(new ExpectedCondition<Boolean>() {
+                        private Point last;
+
+                        @Override
+                        public Boolean apply(WebDriver d) {
+                            Point now = d.findElement(locator).getLocation();
+                            boolean stable = now.equals(last);
+                            last = now;
+                            return stable;
+                        }
+                    });
+        } catch (TimeoutException ignored) {
+            // لو فيه animation مستمرة منوقفش الاختبار
+        }
+    }
+
     public static void WatingLoadingCircle_And_CLICKON_WebElement(
             WebDriver driver, WebElement element, By loadingCircle) {
 
@@ -119,8 +177,50 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
                 driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
 
+
+    }
+    public static void SelectFirstEnableDayinCalender (WebDriver driver) throws InterruptedException {
+        By locator = By.xpath("(//button[@name=\"day\"])[1]");
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(visibilityOfElementLocated(locator));
+        Scrolling.ScrollToElement(driver,locator);
+        CLICKONELEMENTS(driver,locator);
+    }
+
+    public static void SelectLastEnableDayinCalender (WebDriver driver) throws InterruptedException {
+        By locator = By.xpath("(//button[@name=\"day\"])[30]");
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(visibilityOfElementLocated(locator));
+        Scrolling.ScrollToElement(driver,locator);
+        CLICKONELEMENTS(driver,locator);
     }
 
 
+    public static void SHADOW_SEARCH_AND_SELECT_FIRST(WebDriver driver, By hostLocator, By innerCss, String text) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+
+        // 1) كليك على الحقل
+        WebElement input = wait.ignoring(StaleElementReferenceException.class)
+                .until(d -> d.findElement(hostLocator).getShadowRoot().findElement(innerCss));
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", input);
+        input.click();
+
+        pause(driver, 1000);   // استنى الـ dialog يفتح
+
+        // 2) اكتب في العنصر اللي عليه الفوكس (مش في العنصر القديم)
+        new Actions(driver).sendKeys(text).perform();
+
+        pause(driver, 1500);   // استنى الاقتراحات تظهر
+
+        // 3) اختار أول اقتراح
+        new Actions(driver).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+
+        LogsUtiles.info("Searched and selected first suggestion for: " + text);
+    }
+
+    private static void pause(WebDriver driver, long millis) {
+        ((JavascriptExecutor) driver).executeAsyncScript(
+                "var cb = arguments[arguments.length - 1]; setTimeout(cb, arguments[0]);", millis);
+    }
 
 }

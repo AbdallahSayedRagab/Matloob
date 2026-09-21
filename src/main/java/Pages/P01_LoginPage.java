@@ -15,7 +15,7 @@ public class P01_LoginPage {
     private final By Password = By.id("password");
     private final By ConfirmLoginByNAFAZ = By.xpath("//button[@value='login']");
     private final By PersonalAccountCardAtLoginPage = By.xpath("//p[text()='الحساب الشخصي']/following::button[1]");
-    private final By CompanyAccountCardAtLoginPage = By.xpath("");
+    private final By CompanyAccountCardAtLoginPage = By.xpath("//div[p[normalize-space()='منشأة شركة']]//button\n");
 
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
 
@@ -36,38 +36,17 @@ public class P01_LoginPage {
     public P02_Dashboard Login_As_Company (String EMAIL , String password) throws InterruptedException {
 //        String EMAIL =DataUtils.getJsonData("Data","ValidLoginEmail");
 //        String password =DataUtils.getJsonData("Data","Password");
-        Utility.CLICKONELEMENTS(driver,LoginButton);
-        Utility.CLICKONELEMENTS(driver,ClickHereButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,LoginButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ClickHereButton);
         Utility.SENDKEYS(driver,EmailField,EMAIL);
         Utility.SENDKEYS(driver,Password,password);
-        Utility.CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
-        Utility.CLICKONELEMENTS(driver,CompanyAccountCardAtLoginPage);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,CompanyAccountCardAtLoginPage);
         return new P02_Dashboard( driver);
     }
 
-    public P02_Dashboard CreateANewEvent (String NameOfEvent , String password) throws InterruptedException {
-//        String EMAIL =DataUtils.getJsonData("Data","ValidLoginEmail");
-//        String password =DataUtils.getJsonData("Data","Password");
-        Utility.CLICKONELEMENTS(driver,LoginButton);
-        Utility.CLICKONELEMENTS(driver,ClickHereButton);
-        Utility.SENDKEYS(driver,EmailField,NameOfEvent);
-        Utility.SENDKEYS(driver,Password,password);
-        Utility.CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
-        Utility.CLICKONELEMENTS(driver,CompanyAccountCardAtLoginPage);
-        return new P02_Dashboard( driver);
-    }
 
-    public P02_Dashboard CreateANewOpportunity (String NameOfOpportunity , String password) throws InterruptedException {
-//        String EMAIL =DataUtils.getJsonData("Data","ValidLoginEmail");
-//        String password =DataUtils.getJsonData("Data","Password");
-        Utility.CLICKONELEMENTS(driver,LoginButton);
-        Utility.CLICKONELEMENTS(driver,ClickHereButton);
-        Utility.SENDKEYS(driver,EmailField,NameOfOpportunity);
-        Utility.SENDKEYS(driver,Password,password);
-        Utility.CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
-        Utility.CLICKONELEMENTS(driver,CompanyAccountCardAtLoginPage);
-        return new P02_Dashboard( driver);
-    }
+
 
 
     //    public P01_HomePage Continue_Button_AfterDeleteAccount(){

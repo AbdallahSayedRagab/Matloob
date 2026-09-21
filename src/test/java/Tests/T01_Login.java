@@ -12,6 +12,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import static DriverFactory.DriverFactoryClass.SetupDriver;
 import static DriverFactory.DriverFactoryClass.getdriver;
@@ -24,7 +25,7 @@ public class T01_Login {
         SetupDriver(DataUtiles.getPropertyValue("environment","BROWSER"));
         driver = DriverFactoryClass.getdriver();
         getdriver().get(DataUtiles.getPropertyValue("environment","BASE_URL"));
-//       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
     }
 
@@ -49,6 +50,16 @@ public class T01_Login {
                 ,DataUtiles.getJsonData("Data","Password"));
 
     }
+
+    @Test
+    public void CreateNewEvent () throws InterruptedException {
+        new P01_LoginPage(driver).Login_As_Company(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                ,DataUtiles.getJsonData("Data","Password")).Select_EventsPage()
+                .CreateANewEvent("فعالية مسيو مجاهد","وصف كده ع الماشي",
+                        "الرياض","مخرج مهم جدااا","اهو اي حاجه نمشي بيها الدنيا ونشغل الشغل ");
+
+    }
+
 
 
     @AfterMethod
