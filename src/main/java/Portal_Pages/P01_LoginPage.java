@@ -1,4 +1,4 @@
-package Pages;
+package Portal_Pages;
 
 import Utilities.Utility;
 import org.openqa.selenium.By;
@@ -47,49 +47,4 @@ public class P01_LoginPage {
 
 
 
-
-
-    //    public P01_HomePage Continue_Button_AfterDeleteAccount(){
-//        Utilitiy.CLICKONELEMENTS(driver,Continue_Button_AfterDeleteAccount);
-//        return this;
-//    }
-//    public P07_ViewCartPage ClickingOn_CartButton(){
-//        Utility.CLICKONELEMENTS(driver,Cart_Button);
-//        return new P07_ViewCartPage(driver);
-//    }
-//    public P05_ProductsPage ClickingOn_ProductsButton(){
-//        Utility.CLICKONELEMENTS(driver,Products_Button);
-//        return new P05_ProductsPage(driver);
-//    }
-//    public P05_ProductsPage VerifyLoggedName() {
-//        String Logged_visability = Utility.GETTEXT(driver,Logged_as_Button);
-//        Validations.ValidateEquals(Logged_visability,"Logged in as AbdallahSayed");
-//        return new P05_ProductsPage(driver);
-//    }
-//    public P01_LoginPage VerifyLoggedNameP1() {
-//        String Logged_visability = Utility.GETTEXT(driver,Logged_as_Button);
-//        Validations.ValidateEquals(Logged_visability,"Logged in as Abdallah Sayed");
-//        return this;
-
-//
-//    public P01_LoginPage VerifyHomePageURL() {
-//        Validations.ValidateURL("https://automationexercise.com/login");
-//        return this;
-//    }
-//    public P01_LoginPage ClickingOn_LogoutButton(){
-//        Utility.CLICKONELEMENTS(driver,Logout_Button);
-////        Validations.ValidateURL("https://automationexercise.com/login");
-//        return this;
-//    }
-
-//    public P01_LoginPage VerifyDeletedMessege() {
-//        String Messege = Utility.GETTEXT(driver,Deleted_Account_messege);
-//        Validations.ValidateEquals(Messege,"ACCOUNT DELETED!");
-//        Utility.CLICKONELEMENTS(driver,Continue_Button_AfterDeleteAccount);
-//        return this;
-//    }
-//    public P02_LoginPage ClickingOn_SignUpLoginButton(){
-//        Utility.CLICKONELEMENTS(driver,Signup_login_button);
-//        return new P02_LoginPage(driver);
-//    }
 }

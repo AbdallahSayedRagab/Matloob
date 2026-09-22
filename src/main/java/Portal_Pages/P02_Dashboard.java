@@ -1,4 +1,4 @@
-package Pages;
+package Portal_Pages;
 
 import Utilities.Utility;
 import org.openqa.selenium.By;

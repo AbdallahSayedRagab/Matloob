@@ -223,4 +223,15 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
                 "var cb = arguments[arguments.length - 1]; setTimeout(cb, arguments[0]);", millis);
     }
 
+    public static void CheckURLAndNavigateToTargetURL (WebDriver driver, String targetUrl) {
+
+        // 1) استنى إن اللوجين خلص فعلاً (اختار واحدة من التلاتة دي حسب حالتك)
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(d -> !d.getCurrentUrl().contains("10.100.6.4"));   // أو أي جزء مميز في لينك صفحة اللوجين
+        // 2) روح للينك المطلوب بنفسك
+        driver.get(targetUrl);
+        // 3) استنى الصفحة تحمل خالص
+        Utility.WaitForPageLoad(driver);
+    }
+
 }

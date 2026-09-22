@@ -1,16 +1,8 @@
-package Pages;
+package Portal_Pages;
 
-import Utilities.Scrolling;
 import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static Utilities.Utility.WatingLoadingCircle_And_CLICKONELEMENTS;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class P03_EventsPage {
     public P03_EventsPage (WebDriver driver){
