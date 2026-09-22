@@ -18,7 +18,7 @@ public class DriverFactoryClass {
             case "chrome":
                 ChromeOptions Options = new ChromeOptions();
                 Options.addArguments("--start-maximized");
-                Options.addArguments("--force-device-scale-factor=1.25");
+                Options.addArguments("--force-device-scale-factor=1");
                 Options.addArguments("--incognito");
                 driverThreadLocal.set(new ChromeDriver(Options));
                 break;

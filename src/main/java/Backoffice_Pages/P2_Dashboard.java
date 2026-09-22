@@ -18,12 +18,12 @@ public class P2_Dashboard {
 
 
     public P3_EventsPage Select_EventsPage () throws InterruptedException {
-        Utility.CLICKONELEMENTS(driver,EventsPageButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EventsPageButton);
         return new P3_EventsPage(driver);
     }
 
     public P04_OpportunitiesPage Select_OpportunitiesPage () throws InterruptedException {
-        Utility.CLICKONELEMENTS(driver,OpportunitiesPageButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,OpportunitiesPageButton);
         return new P04_OpportunitiesPage(driver);
     }
 }

@@ -20,14 +20,14 @@ public class P3_EventsPage {
 
     public P3_EventsPage ReviewAndAcceptLastEvent (String NameOfEvent) throws InterruptedException {
         Utility.SENDKEYS(driver,SearchBar,NameOfEvent);
-        Utility.CLICKONELEMENTS(driver,FirstReviewButton);
-        Utility.CLICKONELEMENTS(driver,AcceptAndPublishButton);
-        Utility.CLICKONELEMENTS(driver,ConfirmAcceptButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FirstReviewButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptAndPublishButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmAcceptButton);
         return this;
     }
 
     public P3_EventsPage Select_OpportunitiesPage () throws InterruptedException {
-        Utility.CLICKONELEMENTS(driver,AcceptAndPublishButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptAndPublishButton);
         return this;
     }
 }

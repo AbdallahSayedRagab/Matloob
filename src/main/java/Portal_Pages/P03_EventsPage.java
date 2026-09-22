@@ -35,23 +35,23 @@ public class P03_EventsPage {
     public P02_Dashboard CreateANewEvent (String NameOfEvent , String Desc, String Location ,String Goal , String Acceptance) throws InterruptedException {
 //        String EMAIL =DataUtils.getJsonData("Data","ValidLoginEmail");
 //        String password =DataUtils.getJsonData("Data","Password");
-        Utility.CLICKONELEMENTS(driver,CreateEventButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,CreateEventButton);
         Utility.SENDKEYS(driver,NameOfEventField,NameOfEvent);
         Utility.SENDKEYS(driver,DescriptionOfEventField,Desc);
-        Utility.CLICKONELEMENTS(driver,NextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
         Utility.SHADOW_SEARCH_AND_SELECT_FIRST(driver,HostOfSearchField,SearchOfLocationField,Location);
-        Utility.CLICKONELEMENTS(driver,FromDateField);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FromDateField);
         Utility.SelectFirstEnableDayinCalender(driver);
-        Utility.CLICKONELEMENTS(driver,ToDateField);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ToDateField);
         Utility.SelectLastEnableDayinCalender(driver);
-        Utility.CLICKONELEMENTS(driver,AttendanceCounterCheckBox);
-        Utility.CLICKONELEMENTS(driver,NextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,AttendanceCounterCheckBox);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
         Utility.SENDKEYS(driver,GoalField,Goal);
         Utility.SENDKEYS(driver,AcceptanceCriteria,Acceptance);
-        Utility.CLICKONELEMENTS(driver,NextButton);
-        Utility.CLICKONELEMENTS(driver,NextButton);
-        Utility.CLICKONELEMENTS(driver,SendToReviewButton);
-        Utility.CLICKONELEMENTS(driver,SendToReviewButtonInPopUp);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,SendToReviewButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,SendToReviewButtonInPopUp);
 
 
 
