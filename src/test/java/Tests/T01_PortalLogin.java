@@ -63,6 +63,20 @@ public class T01_PortalLogin {
     }
 
 
+    @Test
+    public void CreateNewFacility () throws InterruptedException {
+        new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_RegisterAFacilityPage()
+                .RegisterANewFacility(DataUtiles.getJsonData("Data","FacilityName"),
+                        DataUtiles.getJsonData("Data","Desc"),
+                        DataUtiles.getJsonData("Data","RecordNumber"),
+                        DataUtiles.getJsonData("Data","OfficeNumber"),
+                        DataUtiles.getJsonData("Data","SerialNumber"),
+                        DataUtiles.getJsonData("Data","Phone"),
+                        DataUtiles.getJsonData("Data","Mail"));
+
+    }
+
 
     @AfterMethod
     public void quit () {

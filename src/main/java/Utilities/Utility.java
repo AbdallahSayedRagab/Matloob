@@ -26,14 +26,13 @@ public class Utility {
 //
 //    }
 
-    private static final By Loader = By.cssSelector("div.h-screen > svg, div.brand-splash");
+    private static final By Loader = By.cssSelector("div.h-screen > svg, div.brand-splash, svg.absolute.inset-0");
 
 
-
-        @Step("Clicking On :{Locator}")
-    public static void CLICKONELEMENTS(WebDriver driver, By Locator ) throws InterruptedException {
-            Scrolling.ScrollToElement(driver,Locator);
-            new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(Locator));
+    @Step("Clicking On :{Locator}")
+    public static void CLICKONELEMENTS(WebDriver driver, By Locator) throws InterruptedException {
+        Scrolling.ScrollToElement(driver, Locator);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(Locator));
         driver.findElement(Locator).click();
 //        new WebDriverWait(driver, Duration.ofSeconds(3));
 //        Thread.sleep(1500L);
@@ -43,15 +42,15 @@ public class Utility {
 
     }
 
-public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By Locator, By LoadingCircle) {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    wait.until(ExpectedConditions.elementToBeClickable(Locator));
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
-    Scrolling.ScrollToElement(driver,Locator);
-    driver.findElement(Locator).click();
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
-    LogsUtiles.info("Clicked on " + Locator.toString());
-}
+    public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By Locator, By LoadingCircle) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.elementToBeClickable(Locator));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
+        Scrolling.ScrollToElement(driver, Locator);
+        driver.findElement(Locator).click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
+        LogsUtiles.info("Clicked on " + Locator.toString());
+    }
 
     public static void WatingLoader_And_CLICKONELEMENTS(WebDriver driver, By Locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -118,18 +117,20 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOfElementLocated(Locator));
 
     }
+
     //    @Step("Adding Data On: {Locator}")
     public static void SENDKEYS(WebDriver driver, By Locator, String text) {
-        Scrolling.ScrollToElement(driver,Locator);
+        Scrolling.ScrollToElement(driver, Locator);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(elementToBeClickable(Locator));
         driver.findElement(Locator).sendKeys(text);
         LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
 
     }
-    public static void WatingAndSENDKEYS(WebDriver driver, By Locator, By LoadingCircle , String text) {
+
+    public static void WatingAndSENDKEYS(WebDriver driver, By Locator, By LoadingCircle, String text) {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(visibilityOfElementLocated(Locator));
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
-        Scrolling.ScrollToElement(driver,Locator);
+        Scrolling.ScrollToElement(driver, Locator);
         driver.findElement(Locator).sendKeys(text);
         LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
 
@@ -138,59 +139,61 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
     public static void SELECT(WebDriver driver, By locator, int index) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(elementToBeClickable(locator));
-        Scrolling.ScrollToElement(driver,locator);
+        Scrolling.ScrollToElement(driver, locator);
         WebElement dropdownElement = driver.findElement(locator);
         Select dropdown = new Select(dropdownElement);
         dropdown.selectByIndex(index);
     }
 
-    public static String GETTEXT(WebDriver driver, By Locator , By LoadingCircle ) {
+    public static String GETTEXT(WebDriver driver, By Locator, By LoadingCircle) {
 //        new WebDriverWait(driver, Duration.ofSeconds(5)).until(elementToBeClickable(Locator));
         new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
         String Text = new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(Locator)).getText();
         LogsUtiles.info(" Data of " + Locator.toString() + " is " + Text);
-        return Text ;
+        return Text;
     }
+
     public static void HOVER(WebDriver driver, By locator) {
         WebElement element = driver.findElement(locator);
         Actions actions = new Actions(driver);
         actions.scrollToElement(element).moveToElement(element).perform();
     }
 
-    public static void SCREENSHOT (WebDriver driver ,String ImageName) throws IOException {
+    public static void SCREENSHOT(WebDriver driver, String ImageName) throws IOException {
         String Path = System.getProperty("user.dir") + "/src/main/java/Shots/";
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File target = new File(Path + ImageName + ".png");
-        FileUtils.copyFile(src,target);
+        FileUtils.copyFile(src, target);
     }
+
     public static int COUNT(WebDriver driver, By locator) {
         List<WebElement> products = driver.findElements(locator);
         return products.size();
     }
 
-    public static void WaitForPageLoad (WebDriver driver) {
+    public static void WaitForPageLoad(WebDriver driver) {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(webDriver -> ((JavascriptExecutor) webDriver)
-                                .executeScript("return document.readyState")
-                                .equals("complete"));
-                driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
-
+                        .executeScript("return document.readyState")
+                        .equals("complete"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
 
     }
-    public static void SelectFirstEnableDayinCalender (WebDriver driver) throws InterruptedException {
+
+    public static void SelectFirstEnableDayinCalender(WebDriver driver) throws InterruptedException {
         By locator = By.xpath("(//button[@name=\"day\"])[1]");
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(visibilityOfElementLocated(locator));
-        Scrolling.ScrollToElement(driver,locator);
-        CLICKONELEMENTS(driver,locator);
+        Scrolling.ScrollToElement(driver, locator);
+        CLICKONELEMENTS(driver, locator);
     }
 
-    public static void SelectLastEnableDayinCalender (WebDriver driver) throws InterruptedException {
+    public static void SelectLastEnableDayinCalender(WebDriver driver) throws InterruptedException {
         By locator = By.xpath("(//button[@name=\"day\"])[30]");
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(visibilityOfElementLocated(locator));
-        Scrolling.ScrollToElement(driver,locator);
-        CLICKONELEMENTS(driver,locator);
+        Scrolling.ScrollToElement(driver, locator);
+        CLICKONELEMENTS(driver, locator);
     }
 
 
@@ -223,7 +226,7 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
                 "var cb = arguments[arguments.length - 1]; setTimeout(cb, arguments[0]);", millis);
     }
 
-    public static void CheckURLAndNavigateToTargetURL (WebDriver driver, String targetUrl) {
+    public static void CheckURLAndNavigateToTargetURL(WebDriver driver, String targetUrl) {
 
         // 1) استنى إن اللوجين خلص فعلاً (اختار واحدة من التلاتة دي حسب حالتك)
         new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -234,4 +237,41 @@ public static void WatingLoadingCircle_And_CLICKONELEMENTS(WebDriver driver, By 
         Utility.WaitForPageLoad(driver);
     }
 
+    public static void PAUSE(WebDriver driver, long milliseconds) {
+        ((JavascriptExecutor) driver).executeAsyncScript(
+                "var callback = arguments[arguments.length - 1]; setTimeout(callback, arguments[0]);",
+                milliseconds);
+    }
+
+    public static void UPLOAD_FILE_AND_WAIT(WebDriver driver, By fileInputLocator, String filePath) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        // انتظار عام قبل ما نبدأ (بدل Thread.sleep)
+        PAUSE(driver, 2000);   // غيّر الرقم حسب الوقت اللي محتاجه
+
+        // 0) استنى اللودر (لو شغال من عملية سابقة زي الحفظ) يختفي الأول
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+
+        // 1) تأكد إن الـ input موجود وبقى جاهز فعلاً
+        wait.until(ExpectedConditions.presenceOfElementLocated(fileInputLocator));
+
+        // 2) ابعت المسار
+        driver.findElement(fileInputLocator).sendKeys(filePath);
+        LogsUtiles.info("File path sent: " + filePath);
+
+        // 3) لو ظهر لودر بعد الرفع، استناه يختفي
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(3))
+                    .until(ExpectedConditions.visibilityOfElementLocated(Loader));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        } catch (TimeoutException ignored) {
+        }
+
+        // 4) استنى الصفحة تخلص أي reload
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+                .executeScript("return document.readyState").equals("complete"));
+
+        LogsUtiles.info("File uploaded and confirmed: " + filePath);
+    }
 }

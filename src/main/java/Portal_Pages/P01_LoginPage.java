@@ -24,12 +24,12 @@ public class P01_LoginPage {
     public P02_Dashboard Login_As_Individual (String EMAIL , String password) throws InterruptedException {
 //        String EMAIL =DataUtils.getJsonData("Data","ValidLoginEmail");
 //        String password =DataUtils.getJsonData("Data","Password");
-        Utility.CLICKONELEMENTS(driver,LoginButton);
-        Utility.CLICKONELEMENTS(driver,ClickHereButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,LoginButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ClickHereButton);
         Utility.SENDKEYS(driver,EmailField,EMAIL);
         Utility.SENDKEYS(driver,Password,password);
-        Utility.CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
-        Utility.CLICKONELEMENTS(driver,PersonalAccountCardAtLoginPage);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,PersonalAccountCardAtLoginPage);
         return new P02_Dashboard( driver);
     }
 
