@@ -72,8 +72,8 @@ public class T01_PortalLogin {
                         DataUtiles.getUniqueJsonData("Data","RecordNumber"),
                         DataUtiles.getUniqueJsonData("Data","OfficeNumber"),
                         DataUtiles.getUniqueJsonData("Data","SerialNumber"),
-                        DataUtiles.getUniqueJsonData("Data","Phone"),
-                        DataUtiles.getUniqueJsonData("Data","Mail"));
+                        DataUtiles.getJsonData("Data","Phone"),
+                        DataUtiles.getJsonData("Data","Mail"));
 
     }
 
