@@ -14,6 +14,7 @@ public class P2_Dashboard {
 
     private final By EventsPageButton = By.xpath("//a[@href=\"/admin/event-review\"]");
     private final By OpportunitiesPageButton = By.xpath("//a[@href=\"/admin/opportunity-review\"]");
+    private final By ReviewRequestPageButton = By.xpath("//a[@href=\"/admin/review-queue\"]");
 
 
 
@@ -25,5 +26,10 @@ public class P2_Dashboard {
     public P04_OpportunitiesPage Select_OpportunitiesPage () throws InterruptedException {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,OpportunitiesPageButton);
         return new P04_OpportunitiesPage(driver);
+    }
+
+    public P5_FacilityPage Select_FacilityPage () throws InterruptedException {
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ReviewRequestPageButton);
+        return new P5_FacilityPage(driver);
     }
 }

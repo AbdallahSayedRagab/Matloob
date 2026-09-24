@@ -2,7 +2,6 @@ package Tests;
 
 import Backoffice_Pages.P1_LoginPage;
 import DriverFactory.DriverFactoryClass;
-import Portal_Pages.P01_LoginPage;
 import Listeners.IInvociedMethodListener;
 import Listeners.ITestResultListener;
 import Utilities.DataUtiles;
@@ -42,6 +41,22 @@ import static DriverFactory.DriverFactoryClass.getdriver;
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))
                     .Select_EventsPage().ReviewAndAcceptLastEvent(DataUtiles.getJsonData("Data","EventName"));
+
+        }
+
+        @Test
+        public void ReviewAndAcceptFacility () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_FacilityPage().ReviewAndAcceptLastFacility();
+
+        }
+
+        @Test
+        public void ReviewAndRejectFacility () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_FacilityPage().ReviewAndRejectLastFacility();
 
         }
 
