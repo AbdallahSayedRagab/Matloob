@@ -12,7 +12,7 @@ public class P02_Dashboard {
 
     private final By EventsPageButton = By.xpath("//span[text()='الفعاليات']");
     private final By OpportunitiesPageButton = By.xpath("//span[text()='الفرص']");
-    private final By AccountMenu = By.xpath("//button[@id=\"radix-:r5:\"]");
+    private final By AccountMenu = By.xpath("(//button[@aria-haspopup=\"menu\"])[2]");
     private final By RegisterAFacilityChoicePage_AtMenu = By.xpath("//div[text()='تسجيل منشأة']");
 
 
