@@ -62,6 +62,18 @@ public class T01_PortalLogin {
 
     }
 
+    @Test
+    public void CreateNewOpportunity () throws InterruptedException {
+        new P01_LoginPage(driver).Login_As_Company(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_OpportunitiesPage()
+                .CreateANewOpportunity(DataUtiles.getJsonData("Data","OpportunityName"),
+                        DataUtiles.getJsonData("Data","Desc"),
+                        DataUtiles.getJsonData("Data","SalaryFrom"),
+                        DataUtiles.getJsonData("Data","SalaryTo"));
+
+    }
+
+
 
     @Test
     public void CreateNewFacility () throws InterruptedException {

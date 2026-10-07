@@ -25,7 +25,7 @@ public class P03_EventsPage {
     private final By AcceptanceCriteria = By.xpath("//textarea[@placeholder=\"معايير القبول\"]");
     private final By SendToReviewButton = By.xpath("//span[text()='إرسال للمراجعة']");
     private final By SendToReviewButtonInPopUp = By.xpath("(//span[text()='إرسال للمراجعة'])[2]");
-
+    private final By AcceptPolicyButton = By.xpath("//input[@id=\"guidelines_acknowledged\"]");
 
 
 
@@ -36,6 +36,8 @@ public class P03_EventsPage {
 //        String EMAIL =DataUtils.getJsonData("Data","ValidLoginEmail");
 //        String password =DataUtils.getJsonData("Data","Password");
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,CreateEventButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptPolicyButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
         Utility.SENDKEYS(driver,NameOfEventField,NameOfEvent);
         Utility.SENDKEYS(driver,DescriptionOfEventField,Desc);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);

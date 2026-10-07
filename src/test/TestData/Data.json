@@ -5,8 +5,8 @@
   "ID": "30001231231231",
   "AD_UserName" : "aragab.c",
   "AD_Password" : "W3k@170640",
-  "EventName": "فعالية التصميم الجديد",
-  "OpportunityName": "Test",
+  "EventName": "فعالية اكتوبر",
+  "OpportunityName": " فرصة جديدة",
   "TradeName": "Test",
   "CommercialFeature": "Test",
   "Desc": "Desc Desc Desc Desc Desc Desc Desc Desc Desc",
@@ -20,6 +20,9 @@
   "SerialNumber": "0011220033",
   "Phone": "503232433",
   "Mail": "abdallasayed46@gmail.com",
+  "SalaryFrom" : "10",
+  "SalaryTo" : "1000",
+
 
   "Office": "Office"
 }
