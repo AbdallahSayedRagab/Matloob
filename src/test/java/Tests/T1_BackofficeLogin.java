@@ -45,6 +45,14 @@ import static DriverFactory.DriverFactoryClass.getdriver;
         }
 
         @Test
+        public void AcceptAndPublishLastOpportunity () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_OpportunitiesPage().ReviewAndAcceptLastOpportunity(DataUtiles.getJsonData("Data","OpportunityName"));
+
+        }
+
+        @Test
         public void ReviewAndAcceptFacility () throws InterruptedException, IOException {
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))

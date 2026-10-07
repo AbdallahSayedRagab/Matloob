@@ -23,9 +23,9 @@ public class P2_Dashboard {
         return new P3_EventsPage(driver);
     }
 
-    public P04_OpportunitiesPage Select_OpportunitiesPage () throws InterruptedException {
+    public P4_OpportunitiesPage Select_OpportunitiesPage () throws InterruptedException {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,OpportunitiesPageButton);
-        return new P04_OpportunitiesPage(driver);
+        return new P4_OpportunitiesPage(driver);
     }
 
     public P5_FacilityPage Select_FacilityPage () throws InterruptedException {
