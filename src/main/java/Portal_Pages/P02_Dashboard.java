@@ -12,6 +12,7 @@ public class P02_Dashboard {
 
     private final By EventsPageButton = By.xpath("//span[text()='الفعاليات']");
     private final By OpportunitiesPageButton = By.xpath("//span[text()='الفرص']");
+    private final By ExplorePage = By.xpath("//a[@href=\"/individual/explore\"]");
     private final By AccountMenu = By.xpath("(//button[@aria-haspopup=\"menu\"])[2]");
     private final By RegisterAFacilityChoicePage_AtMenu = By.xpath("//div[text()='تسجيل منشأة']");
 
@@ -30,6 +31,11 @@ public class P02_Dashboard {
         Utility.CLICKONELEMENTS(driver,AccountMenu);
         Utility.CLICKONELEMENTS(driver,RegisterAFacilityChoicePage_AtMenu);
         return new P05_FacilityPage(driver);
+    }
+
+    public P06_ExplorePage Select_ExplorePage () throws InterruptedException {
+        Utility.CLICKONELEMENTS(driver,ExplorePage);
+        return new P06_ExplorePage(driver);
     }
 
 

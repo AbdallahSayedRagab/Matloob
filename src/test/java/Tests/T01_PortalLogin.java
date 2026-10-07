@@ -74,6 +74,14 @@ public class T01_PortalLogin {
     }
 
 
+    @Test
+    public void ApplyToTheLastOpportunity () throws InterruptedException {
+        new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                ,DataUtiles.getJsonData("Data","Password"))
+                .Select_ExplorePage().ApplyForTheLastIndividualOpportunity();
+
+    }
+
 
     @Test
     public void CreateNewFacility () throws InterruptedException {

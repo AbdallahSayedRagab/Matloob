@@ -42,4 +42,13 @@
         </classes>
     </test>
 
+    <test name="5 - Portal: Apply To Opportunity" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="ApplyToTheLastOpportunity"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>
