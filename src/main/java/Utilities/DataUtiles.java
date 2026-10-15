@@ -43,4 +43,16 @@ public final static String TEST_DATA_PATH =
             String baseValue = getJsonData(fileName, key);
             return baseValue + "_" + RUN_ID;
         }
+
+        // بيرجع القيمة من الجيسون + الساعة بالدقايق عشان الاسم ميتكررش
+        public static String getJsonDataWithTime (String fileName, String key) {
+            String baseValue = getJsonData(fileName, key);
+            return baseValue + " " + new SimpleDateFormat("HH:mm").format(new Date());
+        }
+
+        // بيرجع القيمة من الجيسون + اليوم والساعة والدقايق أرقام بس من غير رموز ولا مسافات (مثال: 990020099152231)
+        public static String getJsonDataWithDayAndTime (String fileName, String key) {
+            String baseValue = getJsonData(fileName, key);
+            return baseValue + new SimpleDateFormat("ddHHmm").format(new Date());
+        }
     }

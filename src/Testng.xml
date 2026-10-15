@@ -2,7 +2,37 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Full Regression" verbose="1">
 
-    <test name="1 - Portal: Create Event" preserve-order="true">
+    <test name="1 - Portal: Create Facility" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="CreateNewFacility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="2 - Backoffice: Accept Facility" preserve-order="true">
+        <classes>
+            <class name="Tests.T1_BackofficeLogin">
+                <methods>
+                    <include name="ReviewAndAcceptFacility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="3 - Portal: Complete Facility Profile" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="CompleteTheProfileOfLastFacility"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="4 - Portal: Create Event" preserve-order="true">
         <classes>
             <class name="Tests.T01_PortalLogin">
                 <methods>
@@ -12,7 +42,7 @@
         </classes>
     </test>
 
-    <test name="2 - Backoffice: Accept Event" preserve-order="true">
+    <test name="5 - Backoffice: Accept Event" preserve-order="true">
         <classes>
             <class name="Tests.T1_BackofficeLogin">
                 <methods>
@@ -22,7 +52,7 @@
         </classes>
     </test>
 
-    <test name="3 - Portal: Create Opportunity" preserve-order="true">
+    <test name="6 - Portal: Create Opportunity" preserve-order="true">
         <classes>
             <class name="Tests.T01_PortalLogin">
                 <methods>
@@ -32,7 +62,7 @@
         </classes>
     </test>
 
-    <test name="4 - Backoffice: Accept Opportunity" preserve-order="true">
+    <test name="7 - Backoffice: Accept Opportunity" preserve-order="true">
         <classes>
             <class name="Tests.T1_BackofficeLogin">
                 <methods>
@@ -42,11 +72,21 @@
         </classes>
     </test>
 
-    <test name="5 - Portal: Apply To Opportunity" preserve-order="true">
+    <test name="8 - Portal: Apply To Opportunity" preserve-order="true">
         <classes>
             <class name="Tests.T01_PortalLogin">
                 <methods>
                     <include name="ApplyToTheLastOpportunity"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="9 - Backoffice: Disable Facility" preserve-order="true">
+        <classes>
+            <class name="Tests.T1_BackofficeLogin">
+                <methods>
+                    <include name="DisableLastFacility"/>
                 </methods>
             </class>
         </classes>

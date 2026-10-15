@@ -55,7 +55,7 @@ public class T01_PortalLogin {
     public void CreateNewEvent () throws InterruptedException {
         String EventName = DataUtiles.getJsonDataWithTime("Data","EventName");
         JsonUtil.writeValue("LastEventName",EventName);
-        new P01_LoginPage(driver).Login_As_Company(DataUtiles.getJsonData("Data","ValidLoginEmail")
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
                 ,DataUtiles.getJsonData("Data","Password")).Select_EventsPage()
                 .CreateANewEvent(EventName,
                         DataUtiles.getJsonData("Data","Desc"),
@@ -69,7 +69,7 @@ public class T01_PortalLogin {
     public void CreateNewOpportunity () throws InterruptedException {
         String OpportunityName = DataUtiles.getJsonDataWithTime("Data","OpportunityName");
         JsonUtil.writeValue("LastOpportunityName",OpportunityName);
-        new P01_LoginPage(driver).Login_As_Company(DataUtiles.getJsonData("Data","ValidLoginEmail")
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
                         ,DataUtiles.getJsonData("Data","Password")).Select_OpportunitiesPage()
                 .CreateANewOpportunity(OpportunityName,
                         DataUtiles.getJsonData("Data","Desc"),

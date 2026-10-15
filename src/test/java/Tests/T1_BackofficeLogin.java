@@ -68,6 +68,14 @@ import static DriverFactory.DriverFactoryClass.getdriver;
 
         }
 
+        @Test
+        public void DisableLastFacility () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_OrganizersPage().SearchAndSuspendLastFacility(DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
 
 
 
