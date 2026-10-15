@@ -5,36 +5,40 @@ import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class P04_OpportunitiesPage {
-    public P04_OpportunitiesPage (WebDriver driver){
+public class P05_OpportunitiesPage {
+    public P05_OpportunitiesPage (WebDriver driver){
         this.driver = driver ;
     }
     private WebDriver driver;
 
     private final By CreateOpportunityButton = By.xpath("(//span[text()='إنشاء الفرصة'])[1]");
     private final By AcceptPolicyButton = By.xpath("//input[@id=\"guidelines_acknowledged\"]");
-    private final By NextButton = By.xpath("//span[text()='التالي']");
+    private final By NextButton = By.xpath("//span[text()='حفظ ومتابعة']");
     private By EventCardByName(String eventName) {
-        return By.xpath("//h3[contains(normalize-space(),'" + eventName + "')]" + "/ancestor::div[.//input[@type='radio']][1]");
+        return By.xpath("//span[contains(normalize-space(),'" + eventName + "')]" + "/ancestor::button[@role='radio'][1]");
     }
 
-    private final By TempWorkSection = By.xpath("//h1[contains(normalize-space(),'العمل المؤقت')]/ancestor::div[@role='button'][1]");
-    private final By SellerOpportunity = By.xpath("//span[text()='بائع']");
-    private final By OpportunityNameField = By.xpath("//input[@placeholder=\"اسم الفرصة\"]");
-    private final By OpportunityDescField = By.xpath("//textarea[@placeholder=\"وصف الفرصة\"]");
+    private final By TempWorkSection = By.xpath("//span[text()='العمل المؤقت']/ancestor::button[1]");
+    private final By SellerOpportunity = By.xpath("//button[normalize-space()='بائع']");
+    private final By OpportunityNameField = By.xpath("//input[@placeholder=\"ادخل اسم الفرصة\"]");
+    private final By OpportunityDescField = By.xpath("//textarea[@placeholder=\"أكتب نبذة مختصرة عن الفرصة\"]");
     private final By SalaryFromField = By.xpath("//input[@id=\"opportunities.0.salary_from\"]");
     private final By SalaryToField = By.xpath("//input[@id=\"opportunities.0.salary_to\"]");
-    private final By AddOpportunityButton = By.xpath("//span[text()='إضافة الفرصة']");
+    private final By AddOpportunityButton = By.xpath("//button[normalize-space()='إضافة الفرصة']");
     private final By PublishOpportunitiesButton = By.xpath("//span[text()='نشر الفرص']");
+    private final By PublishOpportunityButtonInPopUp = By.xpath("//button[normalize-space()='نشر الفرصة']");
+    private final By MyOpportunitiesTitle = By.xpath("//h1[text()='فرصي']");
+    private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
 
 
 
 
-    public P04_OpportunitiesPage CreateANewOpportunity (String NameOfOpportunity , String Desc, String From , String To) throws InterruptedException {
+    public P05_OpportunitiesPage CreateANewOpportunity (String NameOfOpportunity , String Desc, String From , String To) throws InterruptedException {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,CreateOpportunityButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptPolicyButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
-        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EventCardByName(DataUtiles.getJsonData("Data","EventName")));
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EventCardByName(DataUtiles.getJsonData("Data","LastEventName")));
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,TempWorkSection);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,SellerOpportunity);
         Utility.SENDKEYS(driver,OpportunityNameField,NameOfOpportunity);
@@ -44,6 +48,8 @@ public class P04_OpportunitiesPage {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,AddOpportunityButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,NextButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,PublishOpportunitiesButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,PublishOpportunityButtonInPopUp);
+        Utility.GETTEXT(driver,MyOpportunitiesTitle,LoadingCircle);
 
 
 //        Utility.SHADOW_SEARCH_AND_SELECT_FIRST(driver,HostOfSearchField,SearchOfLocationField,Location);

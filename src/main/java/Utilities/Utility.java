@@ -56,11 +56,15 @@ public class Utility {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(Locator));
+        wait.until(ExpectedConditions.elementToBeClickable(Locator));
 
         // scroll لنص الشاشة عشان أي sticky header/footer ميغطيش العنصر
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
+        // (بيدور على العنصر من جديد لو الصفحة عملت re-render وبقى stale)
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .ignoring(StaleElementReferenceException.class)
+                .until(d -> ((JavascriptExecutor) d).executeScript(
+                        "arguments[0].scrollIntoView({block:'center', inline:'nearest'}); return true;",
+                        d.findElement(Locator)));
 
         waitUntilStable(driver, Locator);
 
@@ -122,6 +126,16 @@ public class Utility {
     public static void SENDKEYS(WebDriver driver, By Locator, String text) {
         Scrolling.ScrollToElement(driver, Locator);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(elementToBeClickable(Locator));
+        driver.findElement(Locator).sendKeys(text);
+        LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
+
+    }
+
+    // زي SENDKEYS بس بيمسح القيمة القديمة الأول (للحقول اللي جاية بقيمة جاهزة)
+    public static void CLEAR_AND_SENDKEYS(WebDriver driver, By Locator, String text) {
+        Scrolling.ScrollToElement(driver, Locator);
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(elementToBeClickable(Locator));
+        driver.findElement(Locator).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         driver.findElement(Locator).sendKeys(text);
         LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
 
@@ -203,7 +217,12 @@ public class Utility {
 
         // 1) كليك على الحقل
         WebElement input = wait.ignoring(StaleElementReferenceException.class)
-                .until(d -> d.findElement(hostLocator).getShadowRoot().findElement(innerCss));
+                .until(ExpectedConditions.visibilityOfElementLocated(hostLocator));
+        try {
+            input = input.getShadowRoot().findElement(innerCss);
+        } catch (NoSuchShadowRootException e) {
+            // الـ shadow root بقى closed، الكليك على الـ host نفسه بيعمل فوكس على الـ input اللي جواه
+        }
         ((JavascriptExecutor) driver).executeScript(
                 "arguments[0].scrollIntoView({block:'center'});", input);
         input.click();

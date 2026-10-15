@@ -4,8 +4,8 @@ import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class P05_FacilityPage {
-    public P05_FacilityPage (WebDriver driver){
+public class P06_FacilityPage {
+    public P06_FacilityPage (WebDriver driver){
         this.driver = driver ;
     }
 

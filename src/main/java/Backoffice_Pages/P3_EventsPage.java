@@ -1,7 +1,7 @@
 package Backoffice_Pages;
 
-import Portal_Pages.P03_EventsPage;
-import Portal_Pages.P04_OpportunitiesPage;
+import Portal_Pages.P04_EventsPage;
+import Portal_Pages.P05_OpportunitiesPage;
 import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

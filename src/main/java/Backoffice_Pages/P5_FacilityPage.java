@@ -24,7 +24,7 @@ public class P5_FacilityPage {
 
     // الميثود اللي بتعمل الكليك، وبتقرا الاسم من الجيسون لوحدها
     public void ReviewAndAcceptLastFacility() {
-        String facilityName = DataUtiles.getJsonData("Data", "FacilityName"); // غيّر المفتاح لو مختلف عندك
+        String facilityName = DataUtiles.getJsonData("Data", "LastFacilityName"); // الاسم الفريد اللي اتسجل في CreateNewFacility
         By reviewLink = GetReviewLinkByFacilityName(facilityName);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver, reviewLink);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver, AcceptButton);
@@ -33,7 +33,7 @@ public class P5_FacilityPage {
 
     }
     public void ReviewAndRejectLastFacility() {
-        String facilityName = DataUtiles.getJsonData("Data", "FacilityName"); // غيّر المفتاح لو مختلف عندك
+        String facilityName = DataUtiles.getJsonData("Data", "LastFacilityName"); // الاسم الفريد اللي اتسجل في CreateNewFacility
         By reviewLink = GetReviewLinkByFacilityName(facilityName);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver, reviewLink);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver, RejectButton);

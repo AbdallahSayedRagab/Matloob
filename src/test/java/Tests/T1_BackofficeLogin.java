@@ -40,7 +40,7 @@ import static DriverFactory.DriverFactoryClass.getdriver;
         public void AcceptAndPublishLastEvent () throws InterruptedException, IOException {
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))
-                    .Select_EventsPage().ReviewAndAcceptLastEvent(DataUtiles.getJsonData("Data","EventName"));
+                    .Select_EventsPage().ReviewAndAcceptLastEvent(DataUtiles.getJsonData("Data","LastEventName"));
 
         }
 
@@ -48,7 +48,7 @@ import static DriverFactory.DriverFactoryClass.getdriver;
         public void AcceptAndPublishLastOpportunity () throws InterruptedException, IOException {
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))
-                    .Select_OpportunitiesPage().ReviewAndAcceptLastOpportunity(DataUtiles.getJsonData("Data","OpportunityName"));
+                    .Select_OpportunitiesPage().ReviewAndAcceptLastOpportunity(DataUtiles.getJsonData("Data","LastOpportunityName"));
 
         }
 

@@ -1,5 +1,6 @@
 package Portal_Pages;
 
+import Utilities.DataUtiles;
 import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,9 @@ public class P01_LoginPage {
     private final By CompanyAccountCardAtLoginPage = By.xpath("//div[p[normalize-space()='منشأة شركة']]//button\n");
 
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
+    private By FacilityAccountCardByName(String facilityName) {
+        return By.xpath("//div[p[normalize-space()='" + facilityName + "']]//button");
+    }
 
 
 
@@ -42,6 +46,16 @@ public class P01_LoginPage {
         Utility.SENDKEYS(driver,Password,password);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,CompanyAccountCardAtLoginPage);
+        return new P02_Dashboard( driver);
+    }
+
+    public P02_Dashboard Login_As_LastFacility (String EMAIL , String password) throws InterruptedException {
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,LoginButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ClickHereButton);
+        Utility.SENDKEYS(driver,EmailField,EMAIL);
+        Utility.SENDKEYS(driver,Password,password);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmLoginByNAFAZ);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FacilityAccountCardByName(DataUtiles.getJsonData("Data","LastFacilityName")));
         return new P02_Dashboard( driver);
     }
 
