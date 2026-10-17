@@ -20,6 +20,10 @@ public class DriverFactoryClass {
                 Options.addArguments("--start-maximized");
                 Options.addArguments("--force-device-scale-factor=1");
                 Options.addArguments("--incognito");
+                // عشان الـ animations متقفش لو البراوزر مش في الواجهة (القوايم بتفضل opacity 0)
+                Options.addArguments("--disable-backgrounding-occluded-windows");
+                Options.addArguments("--disable-renderer-backgrounding");
+                Options.addArguments("--disable-background-timer-throttling");
                 driverThreadLocal.set(new ChromeDriver(Options));
                 break;
 

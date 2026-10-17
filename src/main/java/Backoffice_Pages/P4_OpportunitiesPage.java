@@ -20,7 +20,7 @@ public class P4_OpportunitiesPage {
         Utility.SENDKEYS(driver,SearchBar,NameOfOpportunity);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,FirstReviewButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptAndPublishButton);
-        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmAcceptButton);
+        Utility.CLICKONVISIBLEELEMENTS(driver,ConfirmAcceptButton);
         return this;
     }
 

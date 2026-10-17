@@ -89,6 +89,36 @@ public class T01_PortalLogin {
 
 
     @Test
+    public void SendJobOfferToIndividualOnLastOpportunity () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_CompanyContractsPage()
+                .SearchForOpportunity(OpportunityName)
+                .Select_ActiveOpportunitiesTab()
+                .OpenTheOpportunity(OpportunityName)
+                .Select_IndividualsTab()
+                .ClickOnSendJobOffer()
+                .FillJobOfferDetails(DataUtiles.getJsonData("Data","DailySalary"),
+                        DataUtiles.getJsonData("Data","TestData"))
+                .ConfirmAndSendJobOffer();
+
+    }
+
+
+    @Test
+    public void AcceptJobOfferOfLastOpportunity () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_IndividualContractsPage()
+                .Select_WaitingForReplyTab()
+                .SearchForOpportunity(OpportunityName)
+                .OpenTheContract(OpportunityName)
+                .AcceptTheOffer();
+
+    }
+
+
+    @Test
     public void CreateNewFacility () throws InterruptedException {
         String FacilityName = DataUtiles.getJsonDataWithDayAndTime("Data","FacilityName");
         JsonUtil.writeValue("LastFacilityName",FacilityName);
@@ -121,7 +151,7 @@ public class T01_PortalLogin {
 
     @AfterMethod
     public void quit () {
-//        driver.quit();
+        DriverFactoryClass.Quit();
     }
 }
 

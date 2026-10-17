@@ -24,6 +24,7 @@ public class P07_ExplorePage {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,ApplyButtonByOpportunityName(DataUtiles.getJsonData("Data","LastOpportunityName")));
 //        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FirstApplyButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,LastApplyButton);
+        Utility.WAIT_FOR_TEXT(driver,"تم تقديم الطلب بنجاح");
         return this;
     }
 }

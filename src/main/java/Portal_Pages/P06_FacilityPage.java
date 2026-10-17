@@ -49,6 +49,7 @@ public class P06_FacilityPage {
         Utility.UPLOAD_FILE_AND_WAIT(driver,SecondAttachment,"F:\\Testing\\MATLOOB\\Test_Photo.jpg");
 
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,SendARegistrationRequestButton);
+        Utility.WAIT_FOR_TEXT(driver,"تم إرسال طلب التسجيل بنجاح");
 
 
 

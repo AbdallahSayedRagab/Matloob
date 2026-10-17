@@ -28,7 +28,7 @@ public class P5_FacilityPage {
         By reviewLink = GetReviewLinkByFacilityName(facilityName);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver, reviewLink);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver, AcceptButton);
-        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmAcceptButton);
+        Utility.CLICKONVISIBLEELEMENTS(driver,ConfirmAcceptButton);
 
 
     }

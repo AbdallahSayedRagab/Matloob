@@ -55,7 +55,7 @@ public class Utility {
     public static void WatingLoader_And_CLICKONELEMENTS(WebDriver driver, By Locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        WaitLoaderGone(driver);
         wait.until(ExpectedConditions.elementToBeClickable(Locator));
 
         // scroll لنص الشاشة عشان أي sticky header/footer ميغطيش العنصر
@@ -81,8 +81,45 @@ public class Utility {
                     "arguments[0].click();", driver.findElement(Locator));
         }
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        WaitLoaderGone(driver);
         LogsUtiles.info("Clicked on " + Locator);
+    }
+
+    // يستنى رسالة النجاح تظهر (عشان البراوزر ميتقفلش قبل ما الطلب يوصل)
+    public static void WAIT_FOR_TEXT(WebDriver driver, String text) {
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(visibilityOfElementLocated(By.xpath("//*[contains(normalize-space(text()),'" + text + "')]")));
+        LogsUtiles.info("Text appeared: " + text);
+    }
+
+    // يستنى أي رسالة (toast) تظهر ويرجع النص بتاعها
+    public static String GET_TOAST_TEXT(WebDriver driver) {
+        String text = new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(visibilityOfElementLocated(By.cssSelector("[data-sonner-toast]"))).getText();
+        LogsUtiles.info("Toast message: " + text);
+        return text;
+    }
+
+    // يدوس على القائمة ولو العنصر اللي جواها مظهرش يدوس تاني (لو الصفحة لسه بتحمل وقفلت القائمة)
+    public static void OPEN_MENU_AND_CLICK(WebDriver driver, By MenuLocator, By ItemLocator) {
+        for (int i = 0; i < 3; i++) {
+            WatingLoader_And_CLICKONELEMENTS(driver, MenuLocator);
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(5)).until(visibilityOfElementLocated(ItemLocator));
+                break;
+            } catch (TimeoutException e) {
+                LogsUtiles.info("Menu item not visible, reopening " + MenuLocator);
+            }
+        }
+        WatingLoader_And_CLICKONELEMENTS(driver, ItemLocator);
+    }
+
+    // اللودر بيختفي بـ fade، فلو الـ animation وقفت قبل الآخر (البراوزر مش في الواجهة) بنعتبره اختفى لو شفاف
+    private static void WaitLoaderGone(WebDriver driver) {
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .ignoring(StaleElementReferenceException.class)
+                .until(d -> d.findElements(Loader).stream().noneMatch(e -> e.isDisplayed()
+                        && Double.parseDouble(e.getCssValue("opacity")) > 0.1));
     }
 
     // يستنى العنصر يبطل حركة (نفس المكان مرتين ورا بعض)
@@ -213,7 +250,7 @@ public class Utility {
 
     public static void SHADOW_SEARCH_AND_SELECT_FIRST(WebDriver driver, By hostLocator, By innerCss, String text) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        WaitLoaderGone(driver);
 
         // 1) كليك على الحقل
         WebElement input = wait.ignoring(StaleElementReferenceException.class)
@@ -270,7 +307,7 @@ public class Utility {
         PAUSE(driver, 2000);   // غيّر الرقم حسب الوقت اللي محتاجه
 
         // 0) استنى اللودر (لو شغال من عملية سابقة زي الحفظ) يختفي الأول
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+        WaitLoaderGone(driver);
 
         // 1) تأكد إن الـ input موجود وبقى جاهز فعلاً
         wait.until(ExpectedConditions.presenceOfElementLocated(fileInputLocator));
@@ -283,7 +320,7 @@ public class Utility {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(3))
                     .until(ExpectedConditions.visibilityOfElementLocated(Loader));
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(Loader));
+            WaitLoaderGone(driver);
         } catch (TimeoutException ignored) {
         }
 

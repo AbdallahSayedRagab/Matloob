@@ -16,6 +16,7 @@ public class P02_Dashboard {
     private final By AccountMenu = By.xpath("(//button[@aria-haspopup=\"menu\"])[2]");
     private final By RegisterAFacilityChoicePage_AtMenu = By.xpath("//div[text()='تسجيل منشأة']");
     private final By CompleteProfileButton = By.xpath("//button[normalize-space()='إكمال الملف الشخصي']");
+    private final By IndividualContractsPage = By.xpath("//a[@href='/individual/contracts']");
 
 
     public P03_ProfilePage Select_CompleteProfilePage () throws InterruptedException {
@@ -34,14 +35,23 @@ public class P02_Dashboard {
     }
 
     public P06_FacilityPage Select_RegisterAFacilityPage () throws InterruptedException {
-        Utility.WatingLoader_And_CLICKONELEMENTS(driver,AccountMenu);
-        Utility.WatingLoader_And_CLICKONELEMENTS(driver,RegisterAFacilityChoicePage_AtMenu);
+        Utility.OPEN_MENU_AND_CLICK(driver,AccountMenu,RegisterAFacilityChoicePage_AtMenu);
         return new P06_FacilityPage(driver);
     }
 
     public P07_ExplorePage Select_ExplorePage () throws InterruptedException {
         Utility.CLICKONELEMENTS(driver,ExplorePage);
         return new P07_ExplorePage(driver);
+    }
+
+    public P08_CompanyContractsPage Select_CompanyContractsPage () throws InterruptedException {
+        Utility.CLICKONELEMENTS(driver,OpportunitiesPageButton);
+        return new P08_CompanyContractsPage(driver);
+    }
+
+    public P09_IndividualContractsPage Select_IndividualContractsPage () {
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,IndividualContractsPage);
+        return new P09_IndividualContractsPage(driver);
     }
 
 

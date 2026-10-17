@@ -82,7 +82,27 @@
         </classes>
     </test>
 
-    <test name="9 - Backoffice: Disable Facility" preserve-order="true">
+    <test name="9 - Portal: Send Job Offer" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="SendJobOfferToIndividualOnLastOpportunity"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="10 - Portal: Accept Job Offer" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="AcceptJobOfferOfLastOpportunity"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="11 - Backoffice: Disable Facility" preserve-order="true">
         <classes>
             <class name="Tests.T1_BackofficeLogin">
                 <methods>

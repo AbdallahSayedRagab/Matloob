@@ -83,7 +83,7 @@ import static DriverFactory.DriverFactoryClass.getdriver;
 
         @AfterMethod
         public void quit () {
-//        driver.quit();
+            DriverFactoryClass.Quit();
         }
 }
 
