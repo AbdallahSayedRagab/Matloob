@@ -28,16 +28,31 @@ public class Utility {
 
     private static final By Loader = By.cssSelector("div.h-screen > svg, div.brand-splash, svg.absolute.inset-0");
 
+    // التأخير بعد كل خطوة بالملّي ثانية، بيتقرا من أمر التشغيل الأول ولو مش موجود من ملف الانفيرومنت
+    private static final long StepDelay = LoadStepDelay();
+
+    private static long LoadStepDelay() {
+        try {
+            String value = System.getProperty("STEP_DELAY");
+            if (value == null) value = DataUtiles.getPropertyValue("environment", "STEP_DELAY");
+            return value == null ? 0 : Long.parseLong(value.trim());
+        } catch (IOException | NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    // يستنى بعد الخطوة عشان تقدر تتابع التيست بعينك (صفر = من غير تأخير)
+    private static void WaitStepDelay(WebDriver driver) {
+        if (StepDelay > 0) PAUSE(driver, StepDelay);
+    }
+
 
     @Step("Clicking On :{Locator}")
     public static void CLICKONELEMENTS(WebDriver driver, By Locator) throws InterruptedException {
         Scrolling.ScrollToElement(driver, Locator);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(Locator));
         driver.findElement(Locator).click();
-//        new WebDriverWait(driver, Duration.ofSeconds(3));
-//        Thread.sleep(1500L);
-        ((JavascriptExecutor) driver).executeAsyncScript(
-                "var callback = arguments[arguments.length - 1]; setTimeout(callback, 1000);");
+        WaitStepDelay(driver);
         LogsUtiles.info("Clicked on " + Locator.toString());
 
     }
@@ -82,6 +97,7 @@ public class Utility {
         }
 
         WaitLoaderGone(driver);
+        WaitStepDelay(driver);
         LogsUtiles.info("Clicked on " + Locator);
     }
 
@@ -171,13 +187,13 @@ public class Utility {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(Locator));
         driver.findElement(Locator).click();
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOfElementLocated(Locator));
-
+        WaitStepDelay(driver);
     }
 
     //    @Step("Adding Data On: {Locator}")
     public static void SENDKEYS(WebDriver driver, By Locator, String text) {
         WaitLoaderGone(driver);
-        // لو الصفحة عملت re-render والعنصر بقى stale بندور عليه من جديد ونكتب
+        // لو الصفحة اتحمّلت تاني والعنصر ضاع بندور عليه من جديد ونكتب
         new WebDriverWait(driver, Duration.ofSeconds(15))
                 .ignoring(StaleElementReferenceException.class)
                 .until(d -> {
@@ -187,6 +203,7 @@ public class Utility {
                     element.sendKeys(text);
                     return true;
                 });
+        WaitStepDelay(driver);
         LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
 
     }
@@ -197,6 +214,7 @@ public class Utility {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(elementToBeClickable(Locator));
         driver.findElement(Locator).sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         driver.findElement(Locator).sendKeys(text);
+        WaitStepDelay(driver);
         LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
 
     }
@@ -296,6 +314,7 @@ public class Utility {
 
         // 3) اختار أول اقتراح
         new Actions(driver).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+        WaitStepDelay(driver);
 
         LogsUtiles.info("Searched and selected first suggestion for: " + text);
     }
@@ -351,6 +370,7 @@ public class Utility {
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));
 
+        WaitStepDelay(driver);
         LogsUtiles.info("File uploaded and confirmed: " + filePath);
     }
 }
