@@ -12,13 +12,15 @@ public class P6_OrganizersPage {
     private WebDriver driver;
 
     private final By SearchBar = By.xpath("//input[@type=\"search\"]");
-    private final By SearchButton = By.xpath("//button[normalize-space()='بحث']");
-    private final By SuspendButton = By.xpath("//button[normalize-space()='إيقاف']");
-    private final By SuspendReasonTextArea = By.xpath("//textarea[@id=\"confirm-dialog-text\"]");
-    private final By ConfirmSuspendButton = By.xpath("//div[@role='dialog']//button[normalize-space()='متابعة']");
+    // زرار البحث جنب خانة البحث على طول
+    private final By SearchButton = By.xpath("//input[@type='search']/following::button[1]");
+    private final By SuspendButton = By.xpath("//*[contains(@class,'card actions')]/button[1]");
+    private final By SuspendReasonTextArea = By.id("confirm-dialog-text");
+    // في الـ popup: إلغاء وبعده متابعة
+    private final By ConfirmSuspendButton = By.xpath("//div[@role='dialog']//button[last()]");
 
     private By ViewButtonByFacilityName(String facilityName) {
-        return By.xpath("//tr[td[normalize-space()='" + facilityName + "']]//a[normalize-space()='عرض']");
+        return By.xpath("//tr[td[contains(.,'" + facilityName + "')]]//a");
     }
 
 

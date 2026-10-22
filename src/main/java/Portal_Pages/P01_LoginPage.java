@@ -10,18 +10,19 @@ public class P01_LoginPage {
         this.driver = driver ;
     }
     private WebDriver driver;
-    private final By LoginButton = By.xpath("//span[text()='تسجيل الدخول']");
-    private final By ClickHereButton = By.xpath("//a[contains(@href,'/Account/LoginDb?userType=Governmental')]");
+    private final By LoginButton = By.xpath("//header//button[not(@type)]");
+    private final By ClickHereButton = By.xpath("//a[contains(@href,'Governmental')]");
     private final By EmailField = By.id("email");
     private final By Password = By.id("password");
     private final By ConfirmLoginByNAFAZ = By.xpath("//button[@value='login']");
-    private final By PersonalAccountCardAtLoginPage = By.xpath("//span[normalize-space()='الحساب الشخصي']/following::button[1]");
+    // الحساب الشخصي دايمًا أول كارت في الصفحة
+    private final By PersonalAccountCardAtLoginPage = By.xpath("(//main//button)[1]");
     private final By CompanyAccountCardAtLoginPage = FacilityAccountCardByName("منشأة شركة");
 
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
     // اسم المنشأة جوه <p> والزرار في نفس الكارت (أقرب div فيه button)
     private By FacilityAccountCardByName(String facilityName) {
-        return By.xpath("//p[normalize-space()='" + facilityName + "']/ancestor::div[.//button][1]//button");
+        return By.xpath("//p[.='" + facilityName + "']/ancestor::div[.//button][1]//button");
     }
 
 

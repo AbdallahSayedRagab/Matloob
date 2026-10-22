@@ -11,9 +11,11 @@ public class P4_OpportunitiesPage {
     private WebDriver driver;
 
     private final By SearchBar = By.xpath("//input[@type=\"search\"]");
-    private final By FirstReviewButton = By.xpath("(//a[text()=' مراجعة '])[1]");
-    private final By AcceptAndPublishButton = By.xpath("//button[text()='موافقة ونشر']");
-    private final By ConfirmAcceptButton = By.xpath("//button[text()=' موافقة ']");
+    private final By FirstReviewButton = By.xpath("//a[contains(@href,'/admin/opportunity-review/')]");
+    // أزرار المراجعة: موافقة ونشر، رفض، إعادة للتعديل
+    private final By AcceptAndPublishButton = By.xpath("//*[contains(@class,'card actions')]/button[1]");
+    // في الـ popup: إلغاء وبعده التأكيد
+    private final By ConfirmAcceptButton = By.xpath("//div[@role='dialog']//button[last()]");
 
 
     public P4_OpportunitiesPage ReviewAndAcceptLastOpportunity (String NameOfOpportunity) throws InterruptedException {

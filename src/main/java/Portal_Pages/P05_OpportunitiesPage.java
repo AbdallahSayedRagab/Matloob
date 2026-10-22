@@ -11,8 +11,9 @@ public class P05_OpportunitiesPage {
     }
     private WebDriver driver;
 
-    private final By CreateOpportunityButton = By.xpath("(//span[text()='إنشاء الفرصة'])[1]");
-    private final By AcceptPolicyButton = By.xpath("//input[@id=\"guidelines_acknowledged\"]");
+    // أول زرار أسود في الصفحة
+    private final By CreateOpportunityButton = By.xpath("//main//button[contains(@class,'bg-black')]");
+    private final By AcceptPolicyButton = By.id("guidelines_acknowledged");
     private final By NextButton = By.xpath("//span[text()='حفظ ومتابعة']");
     private By EventCardByName(String eventName) {
         return By.xpath("//span[contains(normalize-space(),'" + eventName + "')]" + "/ancestor::button[@role='radio'][1]");

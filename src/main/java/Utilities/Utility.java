@@ -354,8 +354,13 @@ public class Utility {
         // 1) تأكد إن الـ input موجود وبقى جاهز فعلاً
         wait.until(ExpectedConditions.presenceOfElementLocated(fileInputLocator));
 
-        // 2) ابعت المسار
-        driver.findElement(fileInputLocator).sendKeys(filePath);
+        // 2) ابعت المسار (لو الصفحة اتحمّلت تاني بعد الحفظ والعنصر ضاع بندور عليه من جديد)
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .ignoring(StaleElementReferenceException.class)
+                .until(d -> {
+                    d.findElement(fileInputLocator).sendKeys(filePath);
+                    return true;
+                });
         LogsUtiles.info("File path sent: " + filePath);
 
         // 3) لو ظهر لودر بعد الرفع، استناه يختفي

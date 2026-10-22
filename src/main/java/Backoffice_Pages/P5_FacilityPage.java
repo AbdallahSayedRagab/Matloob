@@ -8,11 +8,13 @@ import org.openqa.selenium.WebDriver;
 public class P5_FacilityPage {
     public P5_FacilityPage(WebDriver driver) {this.driver = driver;}
     private WebDriver driver;
-    private final By AcceptButton = By.xpath("//button[text()='موافقة']");
-    private final By ConfirmAcceptButton = By.xpath("//button[text()=' موافقة ']");
-    private final By RejectButton = By.xpath("//button[text()='رفض']");
-    private final By RejectReasonTextArea = By.xpath("//textarea[@id=\"confirm-dialog-text\"]");
-    private final By FollowToRejectButton = By.xpath("//button[text()=' متابعة ']");
+    // أزرار المراجعة: موافقة، رفض
+    private final By AcceptButton = By.xpath("//*[contains(@class,'card actions')]/button[1]");
+    // في الـ popup: إلغاء وبعده التأكيد
+    private final By ConfirmAcceptButton = By.xpath("//div[@role='dialog']//button[last()]");
+    private final By RejectButton = By.xpath("//*[contains(@class,'card actions')]/button[2]");
+    private final By RejectReasonTextArea = By.id("confirm-dialog-text");
+    private final By FollowToRejectButton = By.xpath("//div[@role='dialog']//button[last()]");
 
 
 

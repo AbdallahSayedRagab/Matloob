@@ -10,13 +10,12 @@ public class P07_ExplorePage {
     private WebDriver driver;
 
     private By ApplyButtonByOpportunityName (String opportunityName) {
-        return By.xpath("//h5[contains(normalize-space(.),'" + opportunityName + "')]"
-                + "/ancestor::div[.//a[normalize-space()='قدم الآن']][1]"
-                + "//a[normalize-space()='قدم الآن']");
+        // لينك قدم الآن بينتهي بـ profile في نفس كارت الفرصة
+        return By.xpath("//h5[contains(.,'" + opportunityName + "')]/../..//a[contains(@href,'profile')]");
     }
 
     private final By FirstApplyButton = By.xpath("//span[text()='ارسال طلب التقديم']");
-    private final By LastApplyButton = By.xpath("//span[text()='إرسال طلب التقديم']");
+    private final By LastApplyButton = By.xpath("//button[contains(@class,'bg-gradient')]");
 
 
 

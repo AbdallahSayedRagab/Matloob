@@ -14,10 +14,10 @@ public class P1_LoginPage {
     }
     private WebDriver driver;
 
-    private final By UserNameField = By.xpath("(//input[@name=\"Username\"])[2]");
-    private final By LoginButton = By.xpath("(//button[@value=\"login\"])[2]");
-    private final By Password = By.xpath("//input[@type=\"password\"]");
-    private final By ConfirmLoginButton = By.xpath("(//button[@type=\"submit\"])[1]");
+    private final By UserNameField = By.cssSelector("#indiviuals [name=Username]");
+    private final By LoginButton = By.cssSelector("#indiviuals button");
+    private final By Password = By.id("password");
+    private final By ConfirmLoginButton = By.cssSelector("button.btn-primary");
 
 
     private final By ConfirmLoginByNAFAZ = By.xpath("//button[@value='login']");

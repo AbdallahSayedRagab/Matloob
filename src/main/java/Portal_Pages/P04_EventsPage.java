@@ -10,7 +10,8 @@ public class P04_EventsPage {
     }
     private WebDriver driver;
 
-    private final By CreateEventButton = By.xpath("(//span[text()='إنشاء فعالية'])[1]");
+    // أول زرار أسود في الصفحة
+    private final By CreateEventButton = By.xpath("//main//button[contains(@class,'bg-black')]");
 //    private final By TypeOfEvent = By.xpath("");
     private final By NameOfEventField = By.xpath("//input[@placeholder=\"ادخل اسم الفعالية\"]");
     private final By DescriptionOfEventField = By.xpath("//textarea[@placeholder=\"أكتب نبذة مختصرة عن الفعالية\"]");
@@ -29,7 +30,7 @@ public class P04_EventsPage {
     private final By AcceptanceCriteria = By.xpath("//textarea[@placeholder=\"ادخل معايير القبول\"]");
     private final By SendToReviewButton = By.xpath("//span[text()='إرسال للمراجعة']");
     private final By SendToReviewButtonInPopUp = By.xpath("//button[normalize-space()='نشر الفعالية']");
-    private final By AcceptPolicyButton = By.xpath("//input[@id=\"guidelines_acknowledged\"]");
+    private final By AcceptPolicyButton = By.id("guidelines_acknowledged");
     private final By SuccessMessage = By.xpath("//h3[text()='تم إرسال الفعالية للمراجعة']");
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
 

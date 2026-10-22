@@ -11,20 +11,22 @@ public class P06_FacilityPage {
 
     private WebDriver driver;
 
-    private final By FacilityName = By.xpath("//input[@placeholder=\"اسم المنشأة\"]");
-    private final By RecordNumber = By.xpath("//input[@placeholder=\"رقم السجل التجاري\"]");
-    private final By WorkingOfficeNumber = By.xpath("//input[@placeholder=\"رقم مكتب العمل\"]");
-    private final By SerialNumber = By.xpath("//input[@placeholder=\"الرقم التسلسلي\"]");
-    private final By Description = By.xpath("//textarea[@placeholder=\"وصف مختصر\"]");
-    private final By Number = By.xpath("//input[@placeholder=\"رقم الجوال\"]");
-    private final By Email = By.xpath("//input[@placeholder=\"البريد الإلكتروني\"]");
-    private final By AreaList = By.xpath("//span[text()='المنطقة']");
+    private final By FacilityName = By.name("name");
+    private final By RecordNumber = By.name("commercialRegistrationNumber");
+    private final By WorkingOfficeNumber = By.name("laborOfficeId");
+    private final By SerialNumber = By.name("sequenceNumber");
+    private final By Description = By.id("description");
+    private final By Number = By.name("phone");
+    private final By Email = By.name("email");
+    private final By AreaList = By.xpath("(//button[@aria-haspopup='listbox'])[1]");
     private final By FirstChoiceForAnyList = By.xpath("(//li[@role=\"option\"])[1]");
-    private final By CityList = By.xpath("//span[text()='المدينة']");
-    private final By SaveAsADraftButton = By.xpath("//span[text()='حفظ كمسودة']");
+    private final By CityList = By.xpath("(//button[@aria-haspopup='listbox'])[2]");
+    // قبل الحفظ كمسودة بيبقى آخر زرار في الفورم
+    private final By SaveAsADraftButton = By.xpath("(//form//button)[last()]");
     private final By FirstAttachment = By.xpath("(//input[@type=\"file\"])[1]");
     private final By SecondAttachment = By.xpath("(//input[@type=\"file\"])[2]");
-    private final By SendARegistrationRequestButton = By.xpath("//span[text()='إرسال طلب التسجيل']");
+    // بعد الحفظ كمسودة بيظهر جنب زرار المسودة، فبيبقى آخر زرار وقبله زرار
+    private final By SendARegistrationRequestButton = By.xpath("(//form//button)[last()][preceding-sibling::button]");
 
 
     public P02_Dashboard RegisterANewFacility (String facilityName , String Desc, String RecordNum ,String OfficeNum , String Serial
