@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Command line suite]">
+  <test thread-count="5" name="Command line test(failed)">
+    <classes>
+      <class name="Tests.T01_PortalLogin">
+        <methods>
+          <include name="quit"/>
+          <include name="CompleteTheProfileOfLastFacility"/>
+          <include name="setupdriver"/>
+        </methods>
+      </class> <!-- Tests.T01_PortalLogin -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Command line suite] -->

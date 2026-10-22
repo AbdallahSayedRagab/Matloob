@@ -15,7 +15,7 @@ public class P6_OrganizersPage {
     private final By SearchButton = By.xpath("//button[normalize-space()='بحث']");
     private final By SuspendButton = By.xpath("//button[normalize-space()='إيقاف']");
     private final By SuspendReasonTextArea = By.xpath("//textarea[@id=\"confirm-dialog-text\"]");
-    private final By ConfirmSuspendButton = By.xpath("//div[@role='dialog']//button[normalize-space()='Continue']");
+    private final By ConfirmSuspendButton = By.xpath("//div[@role='dialog']//button[normalize-space()='متابعة']");
 
     private By ViewButtonByFacilityName(String facilityName) {
         return By.xpath("//tr[td[normalize-space()='" + facilityName + "']]//a[normalize-space()='عرض']");

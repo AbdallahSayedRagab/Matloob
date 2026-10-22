@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": ["/c", "C:\\Program Files\\nodejs\\npx.cmd", "-y", "@playwright/mcp@latest"],
+      "env": {
+        "PATH": "C:\\Program Files\\nodejs;${PATH}",
+        "NODE_OPTIONS": "--use-system-ca"
+      }
+    }
+  }
+}

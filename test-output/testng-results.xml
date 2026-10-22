@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="83" total="94" passed="11" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-10-17T12:59:26 EEST" name="Full Regression" finished-at="2026-10-17T13:07:35 EEST" duration-ms="488983">
+    <groups>
+    </groups>
+    <test started-at="2026-10-17T12:59:26 EEST" name="1 - Portal: Create Facility" finished-at="2026-10-17T13:00:30 EEST" duration-ms="63767">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@4ef37659]" started-at="2026-10-17T12:59:26 EEST" name="setupdriver" finished-at="2026-10-17T12:59:38 EEST" duration-ms="12106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="CreateNewFacility()[pri:0, instance:Tests.T01_PortalLogin@4ef37659]" started-at="2026-10-17T12:59:38 EEST" name="CreateNewFacility" finished-at="2026-10-17T13:00:28 EEST" duration-ms="49758" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateNewFacility -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@4ef37659]" started-at="2026-10-17T13:00:28 EEST" name="quit" finished-at="2026-10-17T13:00:30 EEST" duration-ms="1418" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 1 - Portal: Create Facility -->
+    <test started-at="2026-10-17T13:00:30 EEST" name="2 - Backoffice: Accept Facility" finished-at="2026-10-17T13:00:59 EEST" duration-ms="29681">
+      <class name="Tests.T1_BackofficeLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T1_BackofficeLogin@2df9b86]" started-at="2026-10-17T13:00:30 EEST" name="setupdriver" finished-at="2026-10-17T13:00:36 EEST" duration-ms="6170" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="ReviewAndAcceptFacility()[pri:0, instance:Tests.T1_BackofficeLogin@2df9b86]" started-at="2026-10-17T13:00:36 EEST" name="ReviewAndAcceptFacility" finished-at="2026-10-17T13:00:55 EEST" duration-ms="19154" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ReviewAndAcceptFacility -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T1_BackofficeLogin@2df9b86]" started-at="2026-10-17T13:00:55 EEST" name="quit" finished-at="2026-10-17T13:00:59 EEST" duration-ms="4318" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T1_BackofficeLogin -->
+    </test> <!-- 2 - Backoffice: Accept Facility -->
+    <test started-at="2026-10-17T13:00:59 EEST" name="3 - Portal: Complete Facility Profile" finished-at="2026-10-17T13:01:54 EEST" duration-ms="54288">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@15aab8c6]" started-at="2026-10-17T13:00:59 EEST" name="setupdriver" finished-at="2026-10-17T13:01:08 EEST" duration-ms="8543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="CompleteTheProfileOfLastFacility()[pri:0, instance:Tests.T01_PortalLogin@15aab8c6]" started-at="2026-10-17T13:01:08 EEST" name="CompleteTheProfileOfLastFacility" finished-at="2026-10-17T13:01:52 EEST" duration-ms="43559" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CompleteTheProfileOfLastFacility -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@15aab8c6]" started-at="2026-10-17T13:01:52 EEST" name="quit" finished-at="2026-10-17T13:01:54 EEST" duration-ms="2126" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 3 - Portal: Complete Facility Profile -->
+    <test started-at="2026-10-17T13:01:54 EEST" name="4 - Portal: Create Event" finished-at="2026-10-17T13:02:57 EEST" duration-ms="62805">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@50b5ac82]" started-at="2026-10-17T13:01:54 EEST" name="setupdriver" finished-at="2026-10-17T13:02:02 EEST" duration-ms="8193" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="CreateNewEvent()[pri:0, instance:Tests.T01_PortalLogin@50b5ac82]" started-at="2026-10-17T13:02:02 EEST" name="CreateNewEvent" finished-at="2026-10-17T13:02:55 EEST" duration-ms="52911" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateNewEvent -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@50b5ac82]" started-at="2026-10-17T13:02:55 EEST" name="quit" finished-at="2026-10-17T13:02:57 EEST" duration-ms="1619" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 4 - Portal: Create Event -->
+    <test started-at="2026-10-17T13:02:57 EEST" name="5 - Backoffice: Accept Event" finished-at="2026-10-17T13:03:26 EEST" duration-ms="29336">
+      <class name="Tests.T1_BackofficeLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T1_BackofficeLogin@3059cbc]" started-at="2026-10-17T13:02:57 EEST" name="setupdriver" finished-at="2026-10-17T13:03:03 EEST" duration-ms="6007" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="AcceptAndPublishLastEvent()[pri:0, instance:Tests.T1_BackofficeLogin@3059cbc]" started-at="2026-10-17T13:03:03 EEST" name="AcceptAndPublishLastEvent" finished-at="2026-10-17T13:03:22 EEST" duration-ms="19081" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AcceptAndPublishLastEvent -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T1_BackofficeLogin@3059cbc]" started-at="2026-10-17T13:03:22 EEST" name="quit" finished-at="2026-10-17T13:03:26 EEST" duration-ms="4183" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T1_BackofficeLogin -->
+    </test> <!-- 5 - Backoffice: Accept Event -->
+    <test started-at="2026-10-17T13:03:26 EEST" name="6 - Portal: Create Opportunity" finished-at="2026-10-17T13:04:14 EEST" duration-ms="47964">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@10feca44]" started-at="2026-10-17T13:03:26 EEST" name="setupdriver" finished-at="2026-10-17T13:03:33 EEST" duration-ms="7030" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="CreateNewOpportunity()[pri:0, instance:Tests.T01_PortalLogin@10feca44]" started-at="2026-10-17T13:03:33 EEST" name="CreateNewOpportunity" finished-at="2026-10-17T13:04:12 EEST" duration-ms="38611" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateNewOpportunity -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@10feca44]" started-at="2026-10-17T13:04:12 EEST" name="quit" finished-at="2026-10-17T13:04:14 EEST" duration-ms="2285" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 6 - Portal: Create Opportunity -->
+    <test started-at="2026-10-17T13:04:14 EEST" name="7 - Backoffice: Accept Opportunity" finished-at="2026-10-17T13:04:47 EEST" duration-ms="33290">
+      <class name="Tests.T1_BackofficeLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T1_BackofficeLogin@4d02f94e]" started-at="2026-10-17T13:04:14 EEST" name="setupdriver" finished-at="2026-10-17T13:04:20 EEST" duration-ms="5637" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="AcceptAndPublishLastOpportunity()[pri:0, instance:Tests.T1_BackofficeLogin@4d02f94e]" started-at="2026-10-17T13:04:20 EEST" name="AcceptAndPublishLastOpportunity" finished-at="2026-10-17T13:04:44 EEST" duration-ms="23937" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AcceptAndPublishLastOpportunity -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T1_BackofficeLogin@4d02f94e]" started-at="2026-10-17T13:04:44 EEST" name="quit" finished-at="2026-10-17T13:04:47 EEST" duration-ms="3673" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T1_BackofficeLogin -->
+    </test> <!-- 7 - Backoffice: Accept Opportunity -->
+    <test started-at="2026-10-17T13:04:47 EEST" name="8 - Portal: Apply To Opportunity" finished-at="2026-10-17T13:05:28 EEST" duration-ms="40757">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@2053d869]" started-at="2026-10-17T13:04:47 EEST" name="setupdriver" finished-at="2026-10-17T13:04:55 EEST" duration-ms="7865" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="ApplyToTheLastOpportunity()[pri:0, instance:Tests.T01_PortalLogin@2053d869]" started-at="2026-10-17T13:04:55 EEST" name="ApplyToTheLastOpportunity" finished-at="2026-10-17T13:05:26 EEST" duration-ms="30682" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApplyToTheLastOpportunity -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@2053d869]" started-at="2026-10-17T13:05:26 EEST" name="quit" finished-at="2026-10-17T13:05:28 EEST" duration-ms="2154" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 8 - Portal: Apply To Opportunity -->
+    <test started-at="2026-10-17T13:05:28 EEST" name="9 - Portal: Send Job Offer" finished-at="2026-10-17T13:06:16 EEST" duration-ms="47818">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@4bb33f74]" started-at="2026-10-17T13:05:28 EEST" name="setupdriver" finished-at="2026-10-17T13:05:37 EEST" duration-ms="8747" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="SendJobOfferToIndividualOnLastOpportunity()[pri:0, instance:Tests.T01_PortalLogin@4bb33f74]" started-at="2026-10-17T13:05:37 EEST" name="SendJobOfferToIndividualOnLastOpportunity" finished-at="2026-10-17T13:06:15 EEST" duration-ms="37691" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SendJobOfferToIndividualOnLastOpportunity -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@4bb33f74]" started-at="2026-10-17T13:06:15 EEST" name="quit" finished-at="2026-10-17T13:06:16 EEST" duration-ms="1338" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 9 - Portal: Send Job Offer -->
+    <test started-at="2026-10-17T13:06:16 EEST" name="10 - Portal: Accept Job Offer" finished-at="2026-10-17T13:07:00 EEST" duration-ms="43592">
+      <class name="Tests.T01_PortalLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T01_PortalLogin@3d5c822d]" started-at="2026-10-17T13:06:16 EEST" name="setupdriver" finished-at="2026-10-17T13:06:24 EEST" duration-ms="8338" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="AcceptJobOfferOfLastOpportunity()[pri:0, instance:Tests.T01_PortalLogin@3d5c822d]" started-at="2026-10-17T13:06:24 EEST" name="AcceptJobOfferOfLastOpportunity" finished-at="2026-10-17T13:06:58 EEST" duration-ms="33836" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AcceptJobOfferOfLastOpportunity -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T01_PortalLogin@3d5c822d]" started-at="2026-10-17T13:06:58 EEST" name="quit" finished-at="2026-10-17T13:07:00 EEST" duration-ms="1373" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T01_PortalLogin -->
+    </test> <!-- 10 - Portal: Accept Job Offer -->
+    <test started-at="2026-10-17T13:07:00 EEST" name="11 - Backoffice: Disable Facility" finished-at="2026-10-17T13:07:35 EEST" duration-ms="35164">
+      <class name="Tests.T1_BackofficeLogin">
+        <test-method is-config="true" signature="setupdriver()[pri:0, instance:Tests.T1_BackofficeLogin@49c7b90e]" started-at="2026-10-17T13:07:00 EEST" name="setupdriver" finished-at="2026-10-17T13:07:05 EEST" duration-ms="5800" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupdriver -->
+        <test-method signature="DisableLastFacility()[pri:0, instance:Tests.T1_BackofficeLogin@49c7b90e]" started-at="2026-10-17T13:07:05 EEST" name="DisableLastFacility" finished-at="2026-10-17T13:07:30 EEST" duration-ms="24054" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DisableLastFacility -->
+        <test-method is-config="true" signature="quit()[pri:0, instance:Tests.T1_BackofficeLogin@49c7b90e]" started-at="2026-10-17T13:07:30 EEST" name="quit" finished-at="2026-10-17T13:07:35 EEST" duration-ms="5255" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- Tests.T1_BackofficeLogin -->
+    </test> <!-- 11 - Backoffice: Disable Facility -->
+  </suite> <!-- Full Regression -->
+</testng-results>

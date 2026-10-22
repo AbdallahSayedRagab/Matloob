@@ -1,0 +1,1 @@
+{"uuid":"180cdd22-f8cc-4d68-a078-00901650b099","name":"Tests.T01_PortalLogin.quit","children":["b4273613-6cb2-44af-868a-cdd04327250b"],"description":"","befores":[],"afters":[{"name":"quit","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1792091588719,"stop":1792091588719}],"start":1792091588719,"stop":1792091588719}

@@ -15,12 +15,13 @@ public class P01_LoginPage {
     private final By EmailField = By.id("email");
     private final By Password = By.id("password");
     private final By ConfirmLoginByNAFAZ = By.xpath("//button[@value='login']");
-    private final By PersonalAccountCardAtLoginPage = By.xpath("//p[text()='الحساب الشخصي']/following::button[1]");
-    private final By CompanyAccountCardAtLoginPage = By.xpath("//div[p[normalize-space()='منشأة شركة']]//button\n");
+    private final By PersonalAccountCardAtLoginPage = By.xpath("//span[normalize-space()='الحساب الشخصي']/following::button[1]");
+    private final By CompanyAccountCardAtLoginPage = FacilityAccountCardByName("منشأة شركة");
 
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
+    // اسم المنشأة جوه <p> والزرار في نفس الكارت (أقرب div فيه button)
     private By FacilityAccountCardByName(String facilityName) {
-        return By.xpath("//div[p[normalize-space()='" + facilityName + "']]//button");
+        return By.xpath("//p[normalize-space()='" + facilityName + "']/ancestor::div[.//button][1]//button");
     }
 
 

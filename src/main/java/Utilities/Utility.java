@@ -114,6 +114,21 @@ public class Utility {
         WatingLoader_And_CLICKONELEMENTS(driver, ItemLocator);
     }
 
+    // يدوس على التاب ولو متفعلش (الصفحة لسه بتحمل ومسكتش الكليك) يدوس تاني لحد ما aria-selected تبقى true
+    public static void CLICK_TAB(WebDriver driver, By TabLocator) {
+        for (int i = 0; i < 3; i++) {
+            WatingLoader_And_CLICKONELEMENTS(driver, TabLocator);
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(5))
+                        .until(ExpectedConditions.attributeToBe(TabLocator, "aria-selected", "true"));
+                return;
+            } catch (TimeoutException e) {
+                LogsUtiles.info("Tab not selected, clicking again " + TabLocator);
+            }
+        }
+        throw new TimeoutException("Tab was not selected after 3 clicks: " + TabLocator);
+    }
+
     // اللودر بيختفي بـ fade، فلو الـ animation وقفت قبل الآخر (البراوزر مش في الواجهة) بنعتبره اختفى لو شفاف
     private static void WaitLoaderGone(WebDriver driver) {
         new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -161,9 +176,17 @@ public class Utility {
 
     //    @Step("Adding Data On: {Locator}")
     public static void SENDKEYS(WebDriver driver, By Locator, String text) {
-        Scrolling.ScrollToElement(driver, Locator);
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(elementToBeClickable(Locator));
-        driver.findElement(Locator).sendKeys(text);
+        WaitLoaderGone(driver);
+        // لو الصفحة عملت re-render والعنصر بقى stale بندور عليه من جديد ونكتب
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .ignoring(StaleElementReferenceException.class)
+                .until(d -> {
+                    WebElement element = elementToBeClickable(Locator).apply(d);
+                    if (element == null) return false;
+                    ((JavascriptExecutor) d).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+                    element.sendKeys(text);
+                    return true;
+                });
         LogsUtiles.info(" Data sent to  " + Locator.toString() + " is " + text);
 
     }

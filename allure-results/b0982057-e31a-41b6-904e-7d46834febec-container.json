@@ -1,0 +1,1 @@
+{"uuid":"b0982057-e31a-41b6-904e-7d46834febec","name":"Tests.T1_BackofficeLogin.quit","children":["8fa296c9-5aab-4c42-9147-fed808bee5ee"],"description":"","befores":[],"afters":[{"name":"quit","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1792092659645,"stop":1792092659645}],"start":1792092659644,"stop":1792092659646}

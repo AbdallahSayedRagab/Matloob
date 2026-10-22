@@ -110,8 +110,8 @@ public class T01_PortalLogin {
         String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
         new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
                         ,DataUtiles.getJsonData("Data","Password")).Select_IndividualContractsPage()
-                .Select_WaitingForReplyTab()
                 .SearchForOpportunity(OpportunityName)
+                .Select_WaitingForReplyTab()
                 .OpenTheContract(OpportunityName)
                 .AcceptTheOffer();
 
