@@ -23,6 +23,11 @@ public class P09_IndividualContractsPage {
     }
     private final By AcceptOfferButton = By.xpath("(//button[normalize-space()='قبول العرض'])[1]");
     private final By AcceptOfferButtonInPopUp = By.xpath("//div[@role='dialog']//button[normalize-space()='قبول العرض']");
+    // رفض العرض هو الزرار الأبيض اللي جنب زرار قبول العرض (الـ gradient)
+    private final By RejectOfferButton = By.xpath("//main//button[contains(@class,'bg-gradient')]/following-sibling::button");
+    private final By RejectReasonList = By.xpath("//div[@role='dialog']//button[@aria-haspopup='listbox']");
+    private final By FirstChoiceForAnyList = By.xpath("(//li[@role='option'])[1]");
+    private final By ConfirmRejectOfferButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'bg-black')]");
     // قبول طلب الإلغاء هو الزرار الـ gradient في صفحة العقد
     private final By AcceptCancelRequestButton = By.xpath("//main//button[contains(@class,'bg-gradient')]");
     private final By ConfirmCancelContractButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'bg-black')]");
@@ -67,6 +72,15 @@ public class P09_IndividualContractsPage {
     public P09_IndividualContractsPage AcceptTheOffer () {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptOfferButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptOfferButtonInPopUp);
+        Utility.GET_TOAST_TEXT(driver);
+        return this;
+    }
+
+    public P09_IndividualContractsPage RejectTheOffer () {
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,RejectOfferButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,RejectReasonList);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FirstChoiceForAnyList);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmRejectOfferButtonInPopUp);
         Utility.GET_TOAST_TEXT(driver);
         return this;
     }

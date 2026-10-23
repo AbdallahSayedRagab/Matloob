@@ -136,6 +136,19 @@ public class T01_PortalLogin {
 
 
     @Test
+    public void RejectJobOfferOfLastOpportunity () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_IndividualContractsPage()
+                .SearchForOpportunity(OpportunityName)
+                .Select_WaitingForReplyTab()
+                .OpenTheContract(OpportunityName)
+                .RejectTheOffer();
+
+    }
+
+
+    @Test
     public void CancelContractOfLastOpportunity () throws InterruptedException {
         String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
         new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
