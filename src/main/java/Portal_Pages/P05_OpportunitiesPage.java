@@ -39,6 +39,13 @@ public class P05_OpportunitiesPage {
     // زرار الإغلاق الأحمر في صفحة الفرصة وفي الـ popup
     private final By CloseOpportunityButton = By.xpath("//main//button[contains(@class,'btn-outline-danger')]");
     private final By ConfirmCloseOpportunityButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-outline-danger')]");
+    // طلب تعديل أول زرار رمادي في صفحة الفرصة
+    private final By EditRequestButton = By.xpath("(//main//button[contains(@class,'btn-outline-secondary')])[1]");
+    // بيانات الفرصة بتفتح في popup لوحدها، بنغير الوصف ونحفظ بزرار تعديل الفرصة
+    private final By DescriptionFieldInPopUp = By.name("opportunities.0.description");
+    private final By SaveEditButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-primary')]");
+    // إرسال للمراجعة هو الزرار الأسود الوحيد في الصفحة
+    private final By SendEditRequestButton = By.xpath("//main//button[contains(@class,'bg-black')]");
 
 
 
@@ -77,6 +84,17 @@ public class P05_OpportunitiesPage {
         Utility.CLICK_AND_WAIT_URL(driver,OpportunityByName(NameOfOpportunity),"/opportunities/[0-9a-f-]{36}");
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,CloseOpportunityButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmCloseOpportunityButtonInPopUp);
+        Utility.GET_TOAST_TEXT(driver);
+        return this;
+    }
+
+    public P05_OpportunitiesPage SendEditRequestForTheOpportunity (String NameOfOpportunity , String Desc) {
+        Utility.CLICK_TAB(driver,ActiveOpportunitiesTab);
+        Utility.CLICK_AND_WAIT_URL(driver,OpportunityByName(NameOfOpportunity),"/opportunities/[0-9a-f-]{36}");
+        Utility.CLICK_AND_WAIT_URL(driver,EditRequestButton,"/change-request/");
+        Utility.CLEAR_AND_SENDKEYS(driver,DescriptionFieldInPopUp,Desc);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,SaveEditButtonInPopUp);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,SendEditRequestButton);
         Utility.GET_TOAST_TEXT(driver);
         return this;
     }

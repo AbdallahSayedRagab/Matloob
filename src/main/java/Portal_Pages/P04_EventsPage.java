@@ -42,6 +42,13 @@ public class P04_EventsPage {
     // زرار الإغلاق الأحمر في صفحة الفعالية وفي الـ popup
     private final By CloseEventButton = By.xpath("//main//button[contains(@class,'btn-outline-danger')]");
     private final By ConfirmCloseEventButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-outline-danger')]");
+    // طلب تعديل أول زرار رمادي في صفحة الفعالية (قبل معاينة)
+    private final By EditRequestButton = By.xpath("(//main//button[contains(@class,'btn-outline-secondary')])[1]");
+    // حفظ ومتابعة وفي آخر خطوة إرسال للمراجعة: آخر زرار btn-primary في الصفحة
+    private final By EditRequestNextButton = By.xpath("(//main//button[contains(@class,'btn-primary')])[last()]");
+    // الملاحظات في خطوة معايير الفعالية (لازم من 30 لـ 1000 حرف)
+    private final By NotesField = By.name("step_three.success_criteria.0.comment");
+    private final By ConfirmSendEditRequestButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-primary')]");
 
 
 
@@ -88,6 +95,24 @@ public class P04_EventsPage {
         Utility.CLICK_AND_WAIT_URL(driver,EventByName(NameOfEvent),"/events/[0-9a-f-]{36}");
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,CloseEventButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmCloseEventButtonInPopUp);
+        Utility.GET_TOAST_TEXT(driver);
+        return this;
+    }
+
+    public P04_EventsPage SendEditRequestForTheEvent (String NameOfEvent , String Notes) {
+        Utility.CLICK_TAB(driver,ActiveEventsTab);
+        Utility.CLICK_AND_WAIT_URL(driver,EventByName(NameOfEvent),"/events/[0-9a-f-]{36}");
+        Utility.CLICK_AND_WAIT_URL(driver,EditRequestButton,"/change-request/");
+        // الإرشادات، معلومات الفعالية، تفاصيل إضافية
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EditRequestNextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EditRequestNextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EditRequestNextButton);
+        // معايير الفعالية: بنغير الملاحظات
+        Utility.CLEAR_AND_SENDKEYS(driver,NotesField,Notes);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EditRequestNextButton);
+        // مراجعة ونشر: إرسال للمراجعة
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,EditRequestNextButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmSendEditRequestButtonInPopUp);
         Utility.GET_TOAST_TEXT(driver);
         return this;
     }

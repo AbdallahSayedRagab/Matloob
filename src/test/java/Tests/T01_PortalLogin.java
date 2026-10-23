@@ -74,6 +74,15 @@ public class T01_PortalLogin {
     }
 
     @Test
+    public void SendEditRequestForLastEvent () throws InterruptedException {
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                ,DataUtiles.getJsonData("Data","Password")).Select_EventsPage()
+                .SendEditRequestForTheEvent(DataUtiles.getJsonData("Data","LastEventName"),
+                        DataUtiles.getJsonData("Data","Desc"));
+
+    }
+
+    @Test
     public void CreateNewOpportunity () throws InterruptedException {
         String OpportunityName = DataUtiles.getJsonDataWithTime("Data","OpportunityName");
         JsonUtil.writeValue("LastOpportunityName",OpportunityName);
@@ -83,6 +92,16 @@ public class T01_PortalLogin {
                         DataUtiles.getJsonData("Data","Desc"),
                         DataUtiles.getJsonData("Data","SalaryFrom"),
                         DataUtiles.getJsonData("Data","SalaryTo"));
+
+    }
+
+
+    @Test
+    public void SendEditRequestForLastOpportunity () throws InterruptedException {
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_OpportunitiesPage()
+                .SendEditRequestForTheOpportunity(DataUtiles.getJsonData("Data","LastOpportunityName"),
+                        DataUtiles.getJsonData("Data","AcceptanceCriteria"));
 
     }
 

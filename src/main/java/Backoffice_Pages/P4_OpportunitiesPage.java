@@ -21,6 +21,11 @@ public class P4_OpportunitiesPage {
     private final By RejectReasonTextArea = By.id("confirm-dialog-text");
     // في الـ popup: إلغاء ومتابعة (الأحمر)
     private final By FollowToRejectButton = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-danger')]");
+    // زرار إعادة للتعديل هو الزرار الرمادي في أزرار المراجعة
+    private final By ReturnForEditButton = By.xpath("//*[contains(@class,'card actions')]/button[contains(@class,'btn-secondary')]");
+    private final By ReturnForEditReasonTextArea = By.id("confirm-dialog-text");
+    // في الـ popup: إلغاء ومتابعة (الأحمر)
+    private final By FollowToReturnForEditButton = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-danger')]");
 
 
     public P4_OpportunitiesPage ReviewAndAcceptLastOpportunity (String NameOfOpportunity) throws InterruptedException {
@@ -28,6 +33,15 @@ public class P4_OpportunitiesPage {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,FirstReviewButton);
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,AcceptAndPublishButton);
         Utility.CLICKONVISIBLEELEMENTS(driver,ConfirmAcceptButton);
+        return this;
+    }
+
+    public P4_OpportunitiesPage ReviewAndReturnForEditLastOpportunity (String NameOfOpportunity , String Reason) throws InterruptedException {
+        Utility.SENDKEYS(driver,SearchBar,NameOfOpportunity);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FirstReviewButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ReturnForEditButton);
+        Utility.SENDKEYS(driver,ReturnForEditReasonTextArea,Reason);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,FollowToReturnForEditButton);
         return this;
     }
 

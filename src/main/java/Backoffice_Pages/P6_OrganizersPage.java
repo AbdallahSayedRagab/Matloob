@@ -18,6 +18,10 @@ public class P6_OrganizersPage {
     private final By SuspendReasonTextArea = By.id("confirm-dialog-text");
     // في الـ popup: إلغاء وبعده متابعة
     private final By ConfirmSuspendButton = By.xpath("//div[@role='dialog']//button[last()]");
+    // بعد الإيقاف بيبقى زرار واحد بس في نفس المكان وهو إعادة التفعيل
+    private final By ReactivateButton = By.xpath("//*[contains(@class,'card actions')]/button[1]");
+    // في الـ popup: إلغاء وبعده إعادة التفعيل
+    private final By ConfirmReactivateButton = By.xpath("//div[@role='dialog']//button[last()]");
 
     private By ViewButtonByFacilityName(String facilityName) {
         return By.xpath("//tr[td[contains(.,'" + facilityName + "')]]//a");
@@ -32,6 +36,16 @@ public class P6_OrganizersPage {
         Utility.WatingLoader_And_CLICKONELEMENTS(driver,SuspendButton);
         Utility.SENDKEYS(driver,SuspendReasonTextArea,Reason);
         Utility.CLICKONVISIBLEELEMENTS(driver,ConfirmSuspendButton);
+        return this;
+    }
+
+    public P6_OrganizersPage SearchAndReactivateLastFacility () throws InterruptedException {
+        String facilityName = DataUtiles.getJsonData("Data", "LastFacilityName");
+        Utility.SENDKEYS(driver,SearchBar,facilityName);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,SearchButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ViewButtonByFacilityName(facilityName));
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ReactivateButton);
+        Utility.CLICKONVISIBLEELEMENTS(driver,ConfirmReactivateButton);
         return this;
     }
 }

@@ -62,11 +62,45 @@ import static DriverFactory.DriverFactoryClass.getdriver;
         }
 
         @Test
+        public void ReturnLastEventForEdit () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_EventsPage().ReviewAndReturnForEditLastEvent(DataUtiles.getJsonData("Data","LastEventName"),
+                            DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
+        @Test
+        public void ReturnLastOpportunityForEdit () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_OpportunitiesPage().ReviewAndReturnForEditLastOpportunity(DataUtiles.getJsonData("Data","LastOpportunityName"),
+                            DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
+        @Test
         public void RejectLastOpportunity () throws InterruptedException, IOException {
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))
                     .Select_OpportunitiesPage().ReviewAndRejectLastOpportunity(DataUtiles.getJsonData("Data","LastOpportunityName"),
                             DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
+        @Test
+        public void ApproveEditRequestOfLastEvent () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_ContentEditRequestsPage().ReviewAndApproveLastEditRequest(DataUtiles.getJsonData("Data","LastEventName"));
+
+        }
+
+        @Test
+        public void ApproveEditRequestOfLastOpportunity () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_ContentEditRequestsPage().ReviewAndApproveLastEditRequest(DataUtiles.getJsonData("Data","LastOpportunityName"));
 
         }
 
@@ -91,6 +125,14 @@ import static DriverFactory.DriverFactoryClass.getdriver;
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))
                     .Select_OrganizersPage().SearchAndSuspendLastFacility(DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
+        @Test
+        public void ReactivateLastFacility () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_OrganizersPage().SearchAndReactivateLastFacility();
 
         }
 
