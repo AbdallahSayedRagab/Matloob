@@ -145,6 +145,20 @@ public class Utility {
         throw new TimeoutException("Tab was not selected after 3 clicks: " + TabLocator);
     }
 
+    // يدوس على العنصر ولو اللينك متغيرش (الكارت اتعمله render تاني ومسكش الكليك) يدوس تاني لحد ما اللينك يطابق الـ regex
+    public static void CLICK_AND_WAIT_URL(WebDriver driver, By Locator, String UrlRegex) {
+        for (int i = 0; i < 3; i++) {
+            WatingLoader_And_CLICKONELEMENTS(driver, Locator);
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlMatches(UrlRegex));
+                return;
+            } catch (TimeoutException e) {
+                LogsUtiles.info("URL not changed, clicking again " + Locator);
+            }
+        }
+        throw new TimeoutException("URL did not match " + UrlRegex + " after 3 clicks: " + Locator);
+    }
+
     // اللودر بيختفي بـ fade، فلو الـ animation وقفت قبل الآخر (البراوزر مش في الواجهة) بنعتبره اختفى لو شفاف
     private static void WaitLoaderGone(WebDriver driver) {
         new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -193,9 +207,10 @@ public class Utility {
     //    @Step("Adding Data On: {Locator}")
     public static void SENDKEYS(WebDriver driver, By Locator, String text) {
         WaitLoaderGone(driver);
-        // لو الصفحة اتحمّلت تاني والعنصر ضاع بندور عليه من جديد ونكتب
+        // لو الصفحة اتحمّلت تاني والعنصر ضاع أو لسه مش جاهز للكتابة بندور عليه من جديد ونكتب
         new WebDriverWait(driver, Duration.ofSeconds(15))
                 .ignoring(StaleElementReferenceException.class)
+                .ignoring(ElementNotInteractableException.class)
                 .until(d -> {
                     WebElement element = elementToBeClickable(Locator).apply(d);
                     if (element == null) return false;
@@ -240,8 +255,10 @@ public class Utility {
     public static String GETTEXT(WebDriver driver, By Locator, By LoadingCircle) {
 //        new WebDriverWait(driver, Duration.ofSeconds(5)).until(elementToBeClickable(Locator));
         new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.invisibilityOfElementLocated(LoadingCircle));
+        // العنصر ممكن يتعمله render تاني فنعيد المحاولة لو بقى stale
         String Text = new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(Locator)).getText();
+                .ignoring(StaleElementReferenceException.class)
+                .until(d -> d.findElement(Locator).isDisplayed() ? d.findElement(Locator).getText() : null);
         LogsUtiles.info(" Data of " + Locator.toString() + " is " + Text);
         return Text;
     }

@@ -119,6 +119,53 @@ public class T01_PortalLogin {
 
 
     @Test
+    public void CancelContractOfLastOpportunity () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_CompanyContractsListPage()
+                .Select_IndividualsContracts()
+                .OpenTheContract(OpportunityName)
+                .CancelTheContract();
+
+    }
+
+
+    @Test
+    public void AcceptCancelRequestOfLastOpportunity () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_IndividualContractsPage()
+                .SearchForOpportunity(OpportunityName)
+                .Select_CancelRequestsTab()
+                .OpenTheContract(OpportunityName)
+                .AcceptTheCancelRequest();
+
+    }
+
+
+    @Test
+    public void RateLastContractAsIndividual () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_Individual(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_IndividualContractsPage()
+                .Select_AllUnevaluatedContracts()
+                .RateTheContract(OpportunityName,DataUtiles.getJsonData("Data","TestData"));
+
+    }
+
+
+    @Test
+    public void RateLastContractAsCompany () throws InterruptedException {
+        String OpportunityName = DataUtiles.getJsonData("Data","LastOpportunityName");
+        new P01_LoginPage(driver).Login_As_LastFacility(DataUtiles.getJsonData("Data","ValidLoginEmail")
+                        ,DataUtiles.getJsonData("Data","Password")).Select_CompanyContractsListPage()
+                .Select_RatingRequests()
+                .RateTheContract(OpportunityName,DataUtiles.getJsonData("Data","TestData"));
+
+    }
+
+
+    @Test
     public void CreateNewFacility () throws InterruptedException {
         String FacilityName = DataUtiles.getJsonDataWithDayAndTime("Data","FacilityName");
         JsonUtil.writeValue("LastFacilityName",FacilityName);

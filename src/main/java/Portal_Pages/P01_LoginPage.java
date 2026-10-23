@@ -21,8 +21,9 @@ public class P01_LoginPage {
 
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
     // اسم المنشأة جوه <p> والزرار في نفس الكارت (أقرب div فيه button)
+    // كارت الحساب الشخصي ممكن يعرض اسم آخر منشأة اتفتحت، وكروت المنشآت بعده فبناخد آخر واحد
     private By FacilityAccountCardByName(String facilityName) {
-        return By.xpath("//p[.='" + facilityName + "']/ancestor::div[.//button][1]//button");
+        return By.xpath("(//p[.='" + facilityName + "'])[last()]/ancestor::div[.//button][1]//button");
     }
 
 

@@ -19,6 +19,7 @@ public class P02_Dashboard {
     // آخر زرار من غير type في الصفحة (قبله أزرار البيانات الناقصة لو موجودة)
     private final By CompleteProfileButton = By.xpath("(//main//button[not(@type)])[last()]");
     private final By IndividualContractsPage = By.xpath("//a[@href='/individual/contracts']");
+    private final By CompanyContractsPage = By.xpath("//a[@href='/dashboard/offers']");
 
 
     public P03_ProfilePage Select_CompleteProfilePage () throws InterruptedException {
@@ -48,6 +49,12 @@ public class P02_Dashboard {
 
     public P08_CompanyContractsPage Select_CompanyContractsPage () throws InterruptedException {
         Utility.CLICKONELEMENTS(driver,OpportunitiesPageButton);
+        return new P08_CompanyContractsPage(driver);
+    }
+
+    // صفحة العقود الخاصة بالمنشأة (مش صفحة الفرص اللي بنقدم منها العرض)
+    public P08_CompanyContractsPage Select_CompanyContractsListPage () {
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,CompanyContractsPage);
         return new P08_CompanyContractsPage(driver);
     }
 

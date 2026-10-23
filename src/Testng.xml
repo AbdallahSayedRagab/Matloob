@@ -102,7 +102,48 @@
         </classes>
     </test>
 
-    <test name="11 - Backoffice: Disable Facility" preserve-order="true">
+    <test name="11 - Portal: Cancel Contract" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="CancelContractOfLastOpportunity"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="12 - Portal: Accept Cancel Request" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="AcceptCancelRequestOfLastOpportunity"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="13 - Portal: Rate Contract As Individual" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="RateLastContractAsIndividual"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="14 - Portal: Rate Contract As Company" preserve-order="true">
+        <classes>
+            <class name="Tests.T01_PortalLogin">
+                <methods>
+                    <include name="RateLastContractAsCompany"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!--
+    <test name="15 - Backoffice: Disable Facility" preserve-order="true">
         <classes>
             <class name="Tests.T1_BackofficeLogin">
                 <methods>
@@ -111,4 +152,5 @@
             </class>
         </classes>
     </test>
+    -->
 </suite>
