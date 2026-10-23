@@ -33,6 +33,15 @@ public class P04_EventsPage {
     private final By AcceptPolicyButton = By.id("guidelines_acknowledged");
     private final By SuccessMessage = By.xpath("//h3[text()='تم إرسال الفعالية للمراجعة']");
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
+    // ترتيب التابات: قيد الإجراء، نشطة، ...
+    private final By ActiveEventsTab = By.xpath("(//button[@role='tab'])[2]");
+    // اسم الفعالية نفسه لينك بيفتح صفحة الفعالية
+    private By EventByName (String eventName) {
+        return By.xpath("//div[@role='tabpanel'][not(contains(@class,'hidden'))]//a[.='" + eventName + "']");
+    }
+    // زرار الإغلاق الأحمر في صفحة الفعالية وفي الـ popup
+    private final By CloseEventButton = By.xpath("//main//button[contains(@class,'btn-outline-danger')]");
+    private final By ConfirmCloseEventButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-outline-danger')]");
 
 
 
@@ -71,6 +80,16 @@ public class P04_EventsPage {
 
 
         return new P02_Dashboard( driver);
+    }
+
+    public P04_EventsPage CloseTheEvent (String NameOfEvent) {
+        Utility.CLICK_TAB(driver,ActiveEventsTab);
+        // صفحة الفعالية لينكها فيه id الفعالية
+        Utility.CLICK_AND_WAIT_URL(driver,EventByName(NameOfEvent),"/events/[0-9a-f-]{36}");
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,CloseEventButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmCloseEventButtonInPopUp);
+        Utility.GET_TOAST_TEXT(driver);
+        return this;
     }
 
 

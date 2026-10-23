@@ -30,6 +30,15 @@ public class P05_OpportunitiesPage {
     private final By PublishOpportunityButtonInPopUp = By.xpath("//button[normalize-space()='نشر الفرصة']");
     private final By MyOpportunitiesTitle = By.xpath("//h1[text()='فرصي']");
     private final By LoadingCircle = By.xpath("//mat-spinner[@mode=\"indeterminate\"]");
+    // ترتيب التابات: قيد الإجراء، نشطة، ...
+    private final By ActiveOpportunitiesTab = By.xpath("(//button[@role='tab'])[2]");
+    // اسم الفرصة نفسه لينك بيفتح صفحة الفرصة
+    private By OpportunityByName (String opportunityName) {
+        return By.xpath("//div[@role='tabpanel'][not(contains(@class,'hidden'))]//a[.='" + opportunityName + "']");
+    }
+    // زرار الإغلاق الأحمر في صفحة الفرصة وفي الـ popup
+    private final By CloseOpportunityButton = By.xpath("//main//button[contains(@class,'btn-outline-danger')]");
+    private final By ConfirmCloseOpportunityButtonInPopUp = By.xpath("//div[@role='dialog']//button[contains(@class,'btn-outline-danger')]");
 
 
 
@@ -59,6 +68,16 @@ public class P05_OpportunitiesPage {
 //        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ToDateField);
 //        Utility.SelectLastEnableDayinCalender(driver);
 
+        return this;
+    }
+
+    public P05_OpportunitiesPage CloseTheOpportunity (String NameOfOpportunity) {
+        Utility.CLICK_TAB(driver,ActiveOpportunitiesTab);
+        // صفحة الفرصة لينكها فيه id الفرصة
+        Utility.CLICK_AND_WAIT_URL(driver,OpportunityByName(NameOfOpportunity),"/opportunities/[0-9a-f-]{36}");
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,CloseOpportunityButton);
+        Utility.WatingLoader_And_CLICKONELEMENTS(driver,ConfirmCloseOpportunityButtonInPopUp);
+        Utility.GET_TOAST_TEXT(driver);
         return this;
     }
 

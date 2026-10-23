@@ -53,6 +53,24 @@ import static DriverFactory.DriverFactoryClass.getdriver;
         }
 
         @Test
+        public void RejectLastEvent () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_EventsPage().ReviewAndRejectLastEvent(DataUtiles.getJsonData("Data","LastEventName"),
+                            DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
+        @Test
+        public void RejectLastOpportunity () throws InterruptedException, IOException {
+            new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
+                            ,DataUtiles.getJsonData("Data","AD_Password"))
+                    .Select_OpportunitiesPage().ReviewAndRejectLastOpportunity(DataUtiles.getJsonData("Data","LastOpportunityName"),
+                            DataUtiles.getJsonData("Data","TestData"));
+
+        }
+
+        @Test
         public void ReviewAndAcceptFacility () throws InterruptedException, IOException {
             new P1_LoginPage(driver).LoginInBackoffice(DataUtiles.getJsonData("Data","AD_UserName")
                             ,DataUtiles.getJsonData("Data","AD_Password"))
